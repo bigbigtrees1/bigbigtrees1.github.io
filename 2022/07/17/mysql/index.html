@@ -8,28 +8,77 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>mysql | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySQL的入门笔记(目录分类有点问题，后期修改)">
+  <meta name="description" content="MySQL的入门笔记(目录分类有点问题，后期修改，有些图片可能丢失，因为笔记很早就写了，但是迁移使用hexo创建博客，虽然使用了插件，但是部分图片还是丢失，会努力慢慢改掉)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql">
 <meta property="og:url" content="http://example.com/2022/07/17/mysql/index.html">
 <meta property="og:site_name" content="闲时写">
-<meta property="og:description" content="MySQL的入门笔记(目录分类有点问题，后期修改)">
+<meta property="og:description" content="MySQL的入门笔记(目录分类有点问题，后期修改，有些图片可能丢失，因为笔记很早就写了，但是迁移使用hexo创建博客，虽然使用了插件，但是部分图片还是丢失，会努力慢慢改掉)">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/mysql%E5%9F%BA%E7%A1%80%E7%AF%87.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AF%E8%AF%AD.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%AE%89%E8%A3%85%E7%BF%BB%E8%AF%91.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/navicat.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%B7%BB%E5%8A%A0%E5%94%AF%E4%B8%80%E9%94%AE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/where%E8%AF%AD%E5%8F%A5.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/like.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E8%AE%A1%E7%AE%97%E5%88%97.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%AD%97%E6%AE%B5%E5%88%AB%E5%90%8D.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/order_by_1.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/order_by_2.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/substring.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A21.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A22.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A23.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A24.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E4%B8%BB%E9%94%AE%E5%85%B3%E8%81%94.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%94%AF%E4%B8%80%E5%A4%96%E9%94%AE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E4%B8%80%E5%AF%B9%E5%A4%9A.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%A4%9A%E5%AF%B9%E5%A4%9A.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F1.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F2.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F-%E7%BA%A7%E8%81%94.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/SQL%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E5%80%9F%E4%B9%A6%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E7%B4%A2%E5%BC%951.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E7%B4%A2%E5%BC%952.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E7%B4%A2%E5%BC%953.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A11.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A12.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A13.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A14.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A15.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A16.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A11.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A12.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A13.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A14.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A15.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A16.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/E-R%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E4%B8%89%E7%BA%BF%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A11.png">
+<meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A12.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A13.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A14.png">
 <meta property="og:image" content="http://example.com/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A15.png">
 <meta property="article:published_time" content="2022-07-17T13:04:55.000Z">
-<meta property="article:modified_time" content="2022-07-17T13:06:23.554Z">
+<meta property="article:modified_time" content="2022-07-17T13:37:33.078Z">
 <meta property="article:author" content="bigbigtree">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/07/17/mysql/%E5%AE%89%E8%A3%85%E7%BF%BB%E8%AF%91.png">
+<meta name="twitter:image" content="http://example.com/2022/07/17/mysql/mysql%E5%9F%BA%E7%A1%80%E7%AF%87.png">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
   
@@ -169,13 +218,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>MySQL的入门笔记(目录分类有点问题，后期修改)</p>
+        <p>MySQL的入门笔记(目录分类有点问题，后期修改，有些图片可能丢失，因为笔记很早就写了，但是迁移使用hexo创建博客，虽然使用了插件，但是部分图片还是丢失，会努力慢慢改掉)</p>
 <span id="more"></span>
 
 <h1 id="mysql-学习"><a href="#mysql-学习" class="headerlink" title="mysql 学习"></a>mysql 学习</h1><h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><ul>
-<li>基础篇</li>
+<li>基础篇<img src="/2022/07/17/mysql/mysql%E5%9F%BA%E7%A1%80%E7%AF%87.png" class title="category"></li>
 </ul>
-<h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2>
+<h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><img src="/2022/07/17/mysql/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9.png" class title="category">
 
 <h2 id="数据库介绍"><a href="#数据库介绍" class="headerlink" title="数据库介绍"></a>数据库介绍</h2><h3 id="1-数据库概念"><a href="#1-数据库概念" class="headerlink" title="1. 数据库概念"></a>1. 数据库概念</h3><blockquote>
 <p>数据库，就是存放数据的仓库。<br>数据库(DataBase,简称DB)长期存储在计算机内部有结构的、大量的、共享的数据集合。</p>
@@ -232,7 +281,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-数据库术语"><a href="#4-数据库术语" class="headerlink" title="4. 数据库术语"></a>4. 数据库术语</h3>
+<h3 id="4-数据库术语"><a href="#4-数据库术语" class="headerlink" title="4. 数据库术语"></a>4. 数据库术语</h3><img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AF%E8%AF%AD.png" class title="category">
 
 <h3 id="5-MySQL数据库环境准备"><a href="#5-MySQL数据库环境准备" class="headerlink" title="5.MySQL数据库环境准备"></a>5.MySQL数据库环境准备</h3><blockquote>
 <p>MySQL下载、安装、配置、卸载，安装DBMS、使用DBMS</p>
@@ -459,7 +508,7 @@
 <li>修改字段类名和类型<br>alter table <code>&lt;XXX&gt;</code> change <code>&lt;stu_remark&gt;</code> <code>&lt;XXX&gt;</code> <code>&lt;attribute&gt;</code>;<br><code>example :</code><br>alter table stus change stu_remark stu_desc int;</li>
 <li>只修改字段类型<br>alter table stus modify <code>&lt;XXX&gt;</code> <code>&lt;Type&gt;</code>;<br><code>example:</code><br>alter table stus modify stu_remark varchar(20);<br>注意:这样改了不知道为什么原来not null 属性变成可以为空<br>应该是重新定义这一条，属性应该要加上去</li>
 <li>删除字段、列<br>alter table <code>&lt;XXX&gt;</code> drop <code>&lt;columnName&gt;</code>;<br><code>example:</code><br>alter table stus drop <code>&lt;stu_remark&gt;</code>;</li>
-<li>去掉唯一性的一个办法<br>desc <code>&lt;tableName&gt;</code> 查看表那个列属性是UNI<br>然后 show index from <code>&lt;tableName&gt;</code> 查看key_namel;<br>最后alter table <code>&lt;tableName&gt;</code> drop index <code>&lt;columnName&gt;</code>;<br>7.添加唯一键</li>
+<li>去掉唯一性的一个办法<br>desc <code>&lt;tableName&gt;</code> 查看表那个列属性是UNI<br>然后 show index from <code>&lt;tableName&gt;</code> 查看key_namel;<br>最后alter table <code>&lt;tableName&gt;</code> drop index <code>&lt;columnName&gt;</code>;<br>7.添加唯一键<img src="/2022/07/17/mysql/%E6%B7%BB%E5%8A%A0%E5%94%AF%E4%B8%80%E9%94%AE.png" class title="category"></li>
 </ol>
 </blockquote>
 <h4 id="8-6-MySQL数据类型"><a href="#8-6-MySQL数据类型" class="headerlink" title="8.6 MySQL数据类型"></a>8.6 MySQL数据类型</h4><blockquote>
@@ -467,7 +516,7 @@
 </blockquote>
 <h5 id="1-数值类型"><a href="#1-数值类型" class="headerlink" title="1.数值类型"></a>1.数值类型</h5><ul>
 <li><p>在MySQL有多种数据类型可以存放数值，不同的类型存放的数值的范围或者形式是不同的</p>
-
+<img src="/2022/07/17/mysql/%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B.png" class title="category">
 </li>
 <li><p>橙色颜色代表项目中用的最多</p>
 </li>
@@ -479,7 +528,7 @@
 <h5 id="2-字符串类型"><a href="#2-字符串类型" class="headerlink" title="2.字符串类型"></a>2.字符串类型</h5><blockquote>
 <p>存储字符序列的类型</p>
 </blockquote>
-
+<img src="/2022/07/17/mysql/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B.png" class title="category">
 
 <ul>
 <li>橙色颜色代表项目中用的最多</li>
@@ -487,7 +536,7 @@
 <h5 id="3-日期类型"><a href="#3-日期类型" class="headerlink" title="3.日期类型"></a>3.日期类型</h5><blockquote>
 <p>在MySQL数据库中，我们可以使用字符来存储时间，但是如果我们需要基于时间字段进行查询操作(查询在某个时间段内的数据)就不便于查询实现。</p>
 </blockquote>
-
+<img src="/2022/07/17/mysql/%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B.png" class title="category">
 
 <ul>
 <li>橙色颜色代表项目中用的最多</li>
@@ -517,7 +566,7 @@
 <p>create table books(<br>book_isbn char(4),<br>book_name varchar(10) not null,<br>book_author varchar(6)<br>);</p>
 </blockquote>
 <ul>
-<li>添加数据</li>
+<li>添加数据<img src="/2022/07/17/mysql/%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F.png" class title="category"></li>
 </ul>
 <h5 id="3-唯一约束"><a href="#3-唯一约束" class="headerlink" title="3.唯一约束"></a>3.唯一约束</h5><blockquote>
 <p>在表中的多条数据，此列的值不能重复</p>
@@ -529,7 +578,7 @@
 <p>create table books(<br>book_isbn char(4) unique,<br>book_name varchar(10) not null,<br>book_author varchar(6)<br>);</p>
 </blockquote>
 <ul>
-<li>添加数据:</li>
+<li>添加数据:<img src="/2022/07/17/mysql/%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F.png" class title="category"></li>
 </ul>
 <h5 id="4-主键约束"><a href="#4-主键约束" class="headerlink" title="4.主键约束"></a>4.主键约束</h5><blockquote>
 <p>主键————就是数据表中记录的唯一标识，在一张表中只能有一个主键(主键可以是一个列，也可以是多个列的组合)<br>当一个字段声明为主键之后，添加数据时;</p>
@@ -580,7 +629,7 @@
 <h5 id="6-联合主键"><a href="#6-联合主键" class="headerlink" title="6.联合主键"></a>6.联合主键</h5><blockquote>
 <p>联合主键————将数据表中的多列组合在一起设置为表的主键</p>
 </blockquote>
-
+<img src="/2022/07/17/mysql/%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE.png" class title="category">
 
 <ul>
 <li>定义联合主键</li>
@@ -671,7 +720,7 @@
 <li><p>select <code>&lt;colnumName1, colnumName2, colnumName3&gt;</code>from <code>&lt;tableName&gt;</code> where <code>&lt;conditions&gt;</code>;</p>
 </li>
 <li><p>条件</p>
-
+<img src="/2022/07/17/mysql/where%E8%AF%AD%E5%8F%A5.png" class title="category">
 </li>
 <li><p>多条件查询</p>
 </li>
@@ -709,10 +758,10 @@
 </blockquote>
 <ul>
 <li><p>计算列<br>对从数据表中查询的记录的列进行一定的运算之后显示出来</p>
-
+<img src="/2022/07/17/mysql/%E8%AE%A1%E7%AE%97%E5%88%97.png" class title="category">
 </li>
 <li><p>字段别名(给显示的字段取别名) <code>as</code><br>我们可以为查询结果的列名 取一个语义性更强的别名<br>select <code>&lt;stu_num, 30-stu_age as stu_jianfa</code>&gt; from <code>&lt;stus&gt;</code>;</p>
-
+<img src="/2022/07/17/mysql/%E5%AD%97%E6%AE%B5%E5%88%AB%E5%90%8D.png" class title="category">
 </li>
 <li><p>消除重复行 <code>distinct</code><br>从查询结果中将重复的记录删除<br>select <code>&lt;distinct&gt;</code> <code>&lt;stu_age&gt;</code> from <code>&lt;stus&gt;</code>;</p>
 </li>
@@ -797,7 +846,7 @@
 </blockquote>
 <ul>
 <li>示例<ul>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0.png" class title="category"></li>
 <li>通过<code>字符串</code>类型给日期类型赋值</li>
 <li>insert into stus(stu_num, stu_name, stu_gender, stu_age, stu_tel, stu_qq,stu_enterence)<br>values(‘20210108’, ‘张小三’, ‘女’, 25, ‘13434343344’, ‘123111’, ‘2021-09-01 09:00:00’);</li>
 <li>通过<code>now()</code>获取当前时间<br>insert into stus(stu_num, stu_name, stu_gender, stu_age, stu_tel, stu_qq,stu_enterence)<br>values(‘20210107’, ‘张小四’, ‘女’, 26, ‘13434343345’, ‘123112’, now());</li>
@@ -815,7 +864,7 @@
 <li>示例<ul>
 <li>concat(colnum1, colnum2,…) 拼接多列<ul>
 <li>select concat(stu_name, ‘—‘ ,stu_gender) from stus;</li>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0.png" class title="category"></li>
 </ul>
 </li>
 <li>upper(column) 将字段的值转换成大写</li>
@@ -860,7 +909,7 @@
 <blockquote>
 <p>先对查询的学生信息按照性别进行分组(分成了男和女两组)，然后再分别统计每组学生的个数</p>
 <ul>
-<li>select stu_gender, count(stu_num) from stus group by stu_gender;</li>
+<li>select stu_gender, count(stu_num) from stus group by stu_gender;<img src="/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A21.png" class title="category"></li>
 </ul>
 </blockquote>
 <ul>
@@ -870,7 +919,7 @@
 <p>先对学生按年龄进行分组，然后统计各组的学生数然后进行排序</p>
 <ul>
 <li>select stu_age, count(stu_num)  from stus group by stu_age order by stu_age;</li>
-<li>select stu_age, count(stu_num)  from stus group by stu_age order by stu_age;</li>
+<li>select stu_age, count(stu_num)  from stus group by stu_age order by stu_age;<img src="/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A22.png" class title="category"></li>
 </ul>
 </blockquote>
 <ul>
@@ -879,7 +928,7 @@
 <blockquote>
 <p>按年龄进行分组，然后分别统计每组的人数，再筛选当前组人数&gt;1的组显示出来</p>
 <ul>
-<li>select stu_age, count(stu_num)  from stus group by stu_age having count(stu_num) &gt;&#x3D; 1 order by stu_age;</li>
+<li>select stu_age, count(stu_num)  from stus group by stu_age having count(stu_num) &gt;&#x3D; 1 order by stu_age;<img src="/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A23.png" class title="category"></li>
 </ul>
 </blockquote>
 <ul>
@@ -888,7 +937,7 @@
 <blockquote>
 <p>查询性别为男的学生，然后根据年龄进行分组，然后分别统计每组的人数，再筛选当前组人数&gt;1的组显示出来</p>
 <ul>
-<li>select stu_age, count(stu_num)  from stus where stu_gender&#x3D;’女’ group by stu_age having count(stu_num) &gt;&#x3D; 1 order by stu_age;</li>
+<li>select stu_age, count(stu_num)  from stus where stu_gender&#x3D;’女’ group by stu_age having count(stu_num) &gt;&#x3D; 1 order by stu_age;<img src="/2022/07/17/mysql/%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A24.png" class title="category"></li>
 </ul>
 </blockquote>
 <h5 id="8-9-7-分页查询-limit"><a href="#8-9-7-分页查询-limit" class="headerlink" title="8.9.7 分页查询-limit"></a>8.9.7 分页查询-limit</h5><blockquote>
@@ -919,7 +968,7 @@
 </blockquote>
 <h4 id="8-10-数据表的关联关系"><a href="#8-10-数据表的关联关系" class="headerlink" title="8.10 数据表的关联关系"></a>8.10 数据表的关联关系</h4><h5 id="8-10-1-关联关系介绍"><a href="#8-10-1-关联关系介绍" class="headerlink" title="8.10.1 关联关系介绍"></a>8.10.1 关联关系介绍</h5><blockquote>
 <p>MySQL是一个关系型数据库，不仅可以存储数据，还可以维护数据与数据之间的关系–通过在数据表中添加字段建立外键约束</p>
-
+<img src="/2022/07/17/mysql/%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB.png" class title="category">
 </blockquote>
 <ul>
 <li>数据与数据之间的关联关系分为四种:<ul>
@@ -934,21 +983,21 @@
 <p>人–身份证<br>学生–学籍<br>用户–用户详情</p>
 </blockquote>
 <ul>
-<li>方案1:主键关联–两张数据表中主键相同的数据为相互对应的数据</li>
-<li>方案2:唯一外键–在任意一张表中添加一个字段添加外键约束与另一张表主键关联，并且将外键列添加唯一约束</li>
+<li>方案1:主键关联–两张数据表中主键相同的数据为相互对应的数据<img src="/2022/07/17/mysql/%E4%B8%BB%E9%94%AE%E5%85%B3%E8%81%94.png" class title="category"></li>
+<li>方案2:唯一外键–在任意一张表中添加一个字段添加外键约束与另一张表主键关联，并且将外键列添加唯一约束<img src="/2022/07/17/mysql/%E5%94%AF%E4%B8%80%E5%A4%96%E9%94%AE.png" class title="category"></li>
 </ul>
 <h5 id="8-10-3-一对多与多对一"><a href="#8-10-3-一对多与多对一" class="headerlink" title="8.10.3 一对多与多对一"></a>8.10.3 一对多与多对一</h5><blockquote>
 <p>班级–学生 (一对多) 一个班级包含多个学生<br>学生–班级 (多对一) 多个学生术语同一个班级</p>
 <p>图书–分类  商品–商品类别</p>
 </blockquote>
 <ul>
-<li>方案:在多的一段添加外键，与一的一段主键进行关联</li>
+<li>方案:在多的一段添加外键，与一的一段主键进行关联<img src="/2022/07/17/mysql/%E4%B8%80%E5%AF%B9%E5%A4%9A.png" class title="category"></li>
 </ul>
 <h5 id="8-10-4-多对多关联"><a href="#8-10-4-多对多关联" class="headerlink" title="8.10.4 多对多关联"></a>8.10.4 多对多关联</h5><blockquote>
 <p>学生–课程 一个学生可以选择多门课，一门课程也可以由多个学生选择<br>会员–社团 一个会员可以参加多个社团、一个社团也可以招纳多个会员</p>
 </blockquote>
 <ul>
-<li>方案:额外创建一张关系表来维护多对多关联–在关系表中定义两个外键，分别与两个数据表的主键进行关联</li>
+<li>方案:额外创建一张关系表来维护多对多关联–在关系表中定义两个外键，分别与两个数据表的主键进行关联<img src="/2022/07/17/mysql/%E5%A4%9A%E5%AF%B9%E5%A4%9A.png" class title="category"></li>
 </ul>
 <h5 id="8-10-5-外键约束"><a href="#8-10-5-外键约束" class="headerlink" title="8.10.5 外键约束"></a>8.10.5 外键约束</h5><blockquote>
 <p>外键约束–将一个列添加外键约束与另一张表的主键(唯一列)进行关联之后，这个外键约束的列添加的数据，必须要在关联的主键字段中存在</p>
@@ -979,7 +1028,7 @@
 </li>
 <li><p>3.向班级表添加班级数据</p>
 <ul>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE.png" class title="category"></li>
 </ul>
 </li>
 <li><p>4.向学生表中添加学生信息</p>
@@ -991,7 +1040,7 @@
 </ul>
 <h5 id="8-10-6-外键约束-级联"><a href="#8-10-6-外键约束-级联" class="headerlink" title="8.10.6 外键约束-级联"></a>8.10.6 外键约束-级联</h5><blockquote>
 <p>当学生表中存在学生信息关联班级表的某条记录时，我们就不能对班级表的这条记录进行修改ID、删除操作</p>
-
+<img src="/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F1.png" class title="category">
 
 <p>如果一定要修改如何实现</p>
 <ul>
@@ -1004,7 +1053,7 @@
 </ol>
 </li>
 <li><ol start="3">
-<li>将学生表中cid设置为null的记录的cid重新修改为java2014这个班级的新id</li>
+<li>将学生表中cid设置为null的记录的cid重新修改为java2014这个班级的新id<img src="/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F2.png" class title="category"></li>
 </ol>
 </li>
 </ul>
@@ -1013,7 +1062,7 @@
 <li><p>1.在添加外键时，设置级联修改和级联删除<br>删除原有的外键<br>alter table students drop foreign key FK_STUDENTS_CLASSES;<br>重新添加外键，并设置级联修改和级联删除<br>alter table students add constraint  FK_STUDENTS_CLASSES foreign key(cid) references classes(class_id) on update cascade on delete cascade;</p>
 </li>
 <li><p>2.测试级联代码<br>直接修改c++2022的class_id，关联c++2022这个班级的学生记录cid也会修改</p>
-
+<img src="/2022/07/17/mysql/%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F-%E7%BA%A7%E8%81%94.png" class title="category">
 <p>删除class_id&#x3D;1的班级，会删除students中所有引用class_id&#x3D;1的学生</p>
 </li>
 </ul>
@@ -1159,7 +1208,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="8-12-存储过程"><a href="#8-12-存储过程" class="headerlink" title="8.12 存储过程"></a>8.12 存储过程</h4><h5 id="8-12-1-存储过程介绍"><a href="#8-12-1-存储过程介绍" class="headerlink" title="8.12.1 存储过程介绍"></a>8.12.1 存储过程介绍</h5><h6 id="8-12-1-1-SQL指令执行过程"><a href="#8-12-1-1-SQL指令执行过程" class="headerlink" title="8.12.1.1 SQL指令执行过程"></a>8.12.1.1 SQL指令执行过程</h6>
+<h4 id="8-12-存储过程"><a href="#8-12-存储过程" class="headerlink" title="8.12 存储过程"></a>8.12 存储过程</h4><h5 id="8-12-1-存储过程介绍"><a href="#8-12-1-存储过程介绍" class="headerlink" title="8.12.1 存储过程介绍"></a>8.12.1 存储过程介绍</h5><h6 id="8-12-1-1-SQL指令执行过程"><a href="#8-12-1-1-SQL指令执行过程" class="headerlink" title="8.12.1.1 SQL指令执行过程"></a>8.12.1.1 SQL指令执行过程</h6><img src="/2022/07/17/mysql/SQL%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png" class title="category">
 
 <blockquote>
 <p>从SQL指令执行的流程中我们分析存在的问题:<br>1.如果我们需要重复多次执行相同的SQL，SQL执行需要通过连接传递到MySQL,并且需要经过编译和执行的步骤;<br>2.如果我们需要连续执行多个SQL指令，并且第二个SQL指令需要使用第一个SQL指令执行的结果作为参数;</p>
@@ -1355,7 +1404,7 @@
 <h5 id="8-12-8-2-创建存储过程"><a href="#8-12-8-2-创建存储过程" class="headerlink" title="8.12.8.2 创建存储过程"></a>8.12.8.2 创建存储过程</h5><blockquote>
 <p>create table records (<br>rid int primary key auto_increment,<br>snum char(4) not null, – 学生编号<br>bid int not null, – 图书id<br>borrow_num int not null, – 借书几本<br>is_return int not null, – 0表示未归还 1表示已归还<br>borrow_date date not null, – 借书时间<br>constraint FK_RECORDS_STUDENTS foreign key(snum) references students(stu_num),<br>constraint FK_RECORDS_BOOKS foreign key(bid) references books(book_id)<br>);</p>
 <ul>
-<li>实现借书业务:<br>– 参数1:a 输入参数 学号<br>– 参数2:b 输入参数 图书编号<br>– 参数3:m 输入参数 借书的数量<br>– 参数4:state 输出参数 借书状态(1 借书成功, 2 学号不存在, 3 图书不存在, 4 库存不足)<br>create procedure proc_borrow_book(IN a char(4), IN b int, IN m int, OUT state int)<br>BEGIN<br>declare stu_count int default 0;<br>declare book_count int default 0;<br>declare stock int default 0;<br>– 判断学号是否存在,根据参数a到学生信息表查询是否有stu_num&#x3D;a的记录<br>select count(stu_num) into stu_count from students where stu_num&#x3D;a;<br>if (stu_count&gt;0) then<br>– 学号存在<br>– 判断图书id是否存在:根据参数b查询图书记录总数<br>select count(book_id) into book_count from books where book_id&#x3D;b;<br>if (book_count&gt;0) then<br>– 图书存在<br>– 判断图书库存是否充足，查询当前图书库存，然后和参数m进行比较<br>select book_stock into stock from books where book_id&#x3D;b;<br>if (stock&gt;m) then<br>– 执行借书<br>– 操作1:在借书记录表中添加记录<br>insert into records(snum, bid, borrow_num, is_return, borrow_date)<br>values(a, b, m, 0, sysdate());<br>– 操作2:修改图书库存<br>update books set book_stock&#x3D;stock-m where book_id&#x3D;b;<br>– 借书成功<br>set state&#x3D;1;<br>else<br>– 库存不足<br>set state&#x3D;4;<br>end if;<br>else<br>– 图书不存在<br>set state&#x3D;3;<br>end if;<br>else<br>– 学号不存在<br>set state&#x3D;2;<br>end if;<br>END;
+<li>实现借书业务:<br>– 参数1:a 输入参数 学号<br>– 参数2:b 输入参数 图书编号<br>– 参数3:m 输入参数 借书的数量<br>– 参数4:state 输出参数 借书状态(1 借书成功, 2 学号不存在, 3 图书不存在, 4 库存不足)<br>create procedure proc_borrow_book(IN a char(4), IN b int, IN m int, OUT state int)<br>BEGIN<br>declare stu_count int default 0;<br>declare book_count int default 0;<br>declare stock int default 0;<br>– 判断学号是否存在,根据参数a到学生信息表查询是否有stu_num&#x3D;a的记录<br>select count(stu_num) into stu_count from students where stu_num&#x3D;a;<br>if (stu_count&gt;0) then<br>– 学号存在<br>– 判断图书id是否存在:根据参数b查询图书记录总数<br>select count(book_id) into book_count from books where book_id&#x3D;b;<br>if (book_count&gt;0) then<br>– 图书存在<br>– 判断图书库存是否充足，查询当前图书库存，然后和参数m进行比较<br>select book_stock into stock from books where book_id&#x3D;b;<br>if (stock&gt;m) then<br>– 执行借书<br>– 操作1:在借书记录表中添加记录<br>insert into records(snum, bid, borrow_num, is_return, borrow_date)<br>values(a, b, m, 0, sysdate());<br>– 操作2:修改图书库存<br>update books set book_stock&#x3D;stock-m where book_id&#x3D;b;<br>– 借书成功<br>set state&#x3D;1;<br>else<br>– 库存不足<br>set state&#x3D;4;<br>end if;<br>else<br>– 图书不存在<br>set state&#x3D;3;<br>end if;<br>else<br>– 学号不存在<br>set state&#x3D;2;<br>end if;<br>END;<img src="/2022/07/17/mysql/%E5%80%9F%E4%B9%A6%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B.png" class title="category">
 – 调用存储过程<br>set @state&#x3D;0;<br>call proc_borrow_book(‘1001’, 1, 2, @state);<br>select @state from dual;</li>
 </ul>
 </blockquote>
@@ -1427,10 +1476,10 @@
 </li>
 </ul>
 <blockquote>
-<p>create procedure proc_test3(OUT result varchar(200))<br>BEGIN<br>$<del>$declare bname varchar(20);<br>$</del>$declare bauthor varchar(20);<br>$<del>$declare bprice decimal(10,2);<br>$</del>$declare num int;<br>$<del>$declare i int;<br>$</del>$declare str varchar(50);</p>
-<p>$<del>$– 此查询语句执行之后返回的是一个结果集(多条记录)，使用游标可以来遍历查询的结果集<br>$</del>$declare mycursor cursor for select book_name ,book_author, book_price from books;<br>$<del>$select count(0) into num from books;<br>$</del>$– 打开游标<br>$<del>$open mycursor;<br>$</del>$– 使用游标要结合循环语句<br>$<del>$set i &#x3D; 0;<br>$</del>$while i &lt; num do<br>$<del>$– 使用游标:提取游标当前指向的记录(提取之后，游标自动下移)<br>$</del>$FETCH mycursor into bname, bauthor, bprice;<br>$<del>$set i &#x3D; i+1;<br>$</del>$– set str &#x3D; CONCAT_WS(‘<del>‘, bname, bauthor, bprice);<br>$~~$select CONCAT_WS(‘</del>‘, bname, bauthor, bprice) INTO str;<br>$~~$set result &#x3D; concat_ws(‘,’, result, str);<br>$~$end while;</p>
-<p>$<del>$– 关闭游标<br>$</del>$close mycursor;<br>END;<br>注意:count(0), count(1), count(*)按理来说是一样的<br>-另外一种写法<br>create procedure proc_test4(OUT result varchar(200))<br>BEGIN<br>$<del>$declare bname varchar(20);<br>$</del>$declare bauthor varchar(20);<br>$<del>$declare bprice decimal(10,2);<br>$</del>$declare num int;<br>$<del>$declare i int;<br>$</del>$declare str varchar(50);</p>
-<p>$<del>$– 此查询语句执行之后返回的是一个结果集(多条记录)，使用游标可以来遍历查询的结果集<br>$</del>$declare mycursor cursor for select CONCAT_WS(book_name ,book_author, book_price) from books;<br>$<del>$select count(2) into num from books;<br>$</del>$– 打开游标<br>$<del>$open mycursor;<br>$</del>$– 使用游标要结合循环语句<br>$<del>$set i &#x3D; 0;<br>$</del>$while i &lt; num do<br>$~~~$– 使用游标:提取游标当前指向的记录(提取之后，游标自动下移)<br>$~~~$FETCH mycursor into str;<br>$~~~$set i &#x3D; i+1;<br>$~~~$set result &#x3D; concat_ws(‘,’, result, str);<br>$<del>$end while;<br>$</del>$– 关闭游标<br>$~~$close mycursor;<br>END;</p>
+<p>create procedure proc_test3(OUT result varchar(200))<br>BEGIN<br>declare bname varchar(20);<br>declare bauthor varchar(20);<br>declare bprice decimal(10,2);<br>declare num int;<br>declare i int;<br>declare str varchar(50);</p>
+<p>– 此查询语句执行之后返回的是一个结果集(多条记录)，使用游标可以来遍历查询的结果集<br>declare mycursor cursor for select book_name ,book_author, book_price from books;<br>select count(0) into num from books;<br>– 打开游标<br>open mycursor;<br>– 使用游标要结合循环语句<br>set i &#x3D; 0;<br>while i &lt; num do<br>– 使用游标:提取游标当前指向的记录(提取之后，游标自动下移)<br>FETCH mycursor into bname, bauthor, bprice;<br>set i &#x3D; i+1;<br>– set str &#x3D; CONCAT_WS(‘~‘, bname, bauthor, bprice);<br>select CONCAT_WS(‘~’, bname, bauthor, bprice) INTO str;<br>set result &#x3D; concat_ws(‘,’, result, str);<br>end while;</p>
+<p>– 关闭游标<br>close mycursor;<br>END;<br>注意:count(0), count(1), count(*)按理来说是一样的<br>-另外一种写法<br>create procedure proc_test4(OUT result varchar(200))<br>BEGIN<br>declare bname varchar(20);<br>declare bauthor varchar(20);<br>declare bprice decimal(10,2);<br>declare num int;<br>declare i int;<br>declare str varchar(50);</p>
+<p>– 此查询语句执行之后返回的是一个结果集(多条记录)，使用游标可以来遍历查询的结果集<br>declare mycursor cursor for select CONCAT_WS(book_name ,book_author, book_price) from books;<br>select count(2) into num from books;<br>– 打开游标<br>open mycursor;<br>– 使用游标要结合循环语句<br>set i &#x3D; 0;<br>while i &lt; num do<br>– 使用游标:提取游标当前指向的记录(提取之后，游标自动下移)<br>FETCH mycursor into str;<br>set i &#x3D; i+1;<br>set result &#x3D; concat_ws(‘,’, result, str);<br>end while;<br>– 关闭游标<br>close mycursor;<br>END;</p>
 </blockquote>
 <h4 id="8-13-触发器"><a href="#8-13-触发器" class="headerlink" title="8.13 触发器"></a>8.13 触发器</h4><h5 id="8-13-1-触发器的介绍"><a href="#8-13-1-触发器的介绍" class="headerlink" title="8.13.1 触发器的介绍"></a>8.13.1 触发器的介绍</h5><blockquote>
 <p>触发器，就是一种特殊的存储过程。触发器和存储过程一样是一个能够完成特定、存储在数据库服务器上的SQL片段，但是触发器无需调用，当对数据表中的数据执行DML操作时会自动出发这个SQL片段的执行，而无需手动调用。</p>
@@ -1590,7 +1639,7 @@
 <blockquote>
 <p>索引，就是将数据表中某一列&#x2F;某几列的值取出来构造成便于查找的结构进行存储，生成数据表的目录。当我们进行数据查询的时候，则现在目录中进行查找得到对应的数据抵制，然后再到数据表中根据地址快速的获取数据记录，避免全表扫描。</p>
 </blockquote>
-
+<img src="/2022/07/17/mysql/%E7%B4%A2%E5%BC%951.png" class title="category">
 
 <h5 id="8-15-2-索引的分类"><a href="#8-15-2-索引的分类" class="headerlink" title="8.15.2 索引的分类"></a>8.15.2 索引的分类</h5><ul>
 <li><p>MySQL中的索引，根据创建索引的列的不同，可以分为:</p>
@@ -1628,7 +1677,7 @@
 </blockquote>
 <ul>
 <li>在命令行窗口中可以查看语句的查询规划:<ul>
-<li>explain select * from tb_textindex where tid &#x3D; 1000\G;</li>
+<li>explain select * from tb_textindex where tid &#x3D; 1000\G;<img src="/2022/07/17/mysql/%E7%B4%A2%E5%BC%952.png" class title="category"></li>
 </ul>
 </li>
 </ul>
@@ -1636,7 +1685,7 @@
 <p>– 命令行</p>
 <ul>
 <li>show create table 表名\G;<ul>
-<li>show create table tb_textindex\G;</li>
+<li>show create table tb_textindex\G;<img src="/2022/07/17/mysql/%E7%B4%A2%E5%BC%953.png" class title="category"></li>
 </ul>
 </li>
 </ul>
@@ -1682,7 +1731,7 @@
 <li><strong>持久性</strong>(Durability):事务完成之后，对数据的操作是永久的</li>
 </ul>
 <h5 id="8-16-3-MySQL事务管理"><a href="#8-16-3-MySQL事务管理" class="headerlink" title="8.16.3 MySQL事务管理"></a>8.16.3 MySQL事务管理</h5><h6 id="8-16-3-1-自动提交"><a href="#8-16-3-1-自动提交" class="headerlink" title="8.16.3.1 自动提交"></a>8.16.3.1 自动提交</h6><ul>
-<li>在MySQL中，默认DML指令的执行是自动提交的，当我们执行一个DML指令之后，自动同步到数据库中</li>
+<li>在MySQL中，默认DML指令的执行是自动提交的，当我们执行一个DML指令之后，自动同步到数据库中<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A11.png" class title="category"></li>
 </ul>
 <h6 id="8-16-3-2-事务管理"><a href="#8-16-3-2-事务管理" class="headerlink" title="8.16.3.2 事务管理"></a>8.16.3.2 事务管理</h6><blockquote>
 <p>开启事务，就是关闭自动提交</p>
@@ -1691,7 +1740,7 @@
 <li>在开始事务第一个操作之前，执行<strong>start transaction</strong>(关闭自动提交)</li>
 <li>依次执行事务中的每个DML</li>
 <li>如果在执行的过程中的任何位置出现异常，则执行<strong>rollback</strong>(事务回滚(清除连接缓存中的操作,当前撤销事务已经执行的操作))</li>
-<li>如果事务中所有的DML操作都执行成功,则在的最后执行commit提交事务</li>
+<li>如果事务中所有的DML操作都执行成功,则在的最后执行commit提交事务<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A12.png" class title="category"></li>
 </ul>
 <blockquote>
 <p>– 开启事务(关闭自动提交–手动提交)<br>start transaction<br>insert into records(snum, bid, borrow_num, is_return, borrow_date) values(‘1004’, 3, 2, 0, sysdate());<br>– 出错<br>select aaa;<br>– 事务回滚(清除连接缓存中的操作,当前撤销事务已经执行的操作)<br>rollback;<br>update books set book_stock&#x3D;book_stock-2 where book_id &#x3D; 3;<br>– 提交事务(将连接缓存中的操作写入数据文件)<br>commit;</p>
@@ -1703,25 +1752,25 @@
 <li>MySQL数据库事务隔离级别:<ul>
 <li><strong>读未提交</strong>(read uncommitted):T2可以读取T1执行但未提交的数据(可能会导致出现脏读)<ul>
 <li>脏读:一个事务读取到了另一个事务中未提交的数据</li>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A13.png" class title="category"></li>
 </ul>
 </li>
 <li><strong>读已提交</strong>(read committed):T2只能读取T1已经提交的数据(避免了脏读，可能会导致不可重复读也叫虚读)<ul>
 <li>不可重复读(虚读):在同一个事务中，两次查询操作读取到的数据不一致</li>
 <li>例如:T2进行第一次查询之后在第二次查询之前，T1修改并提交了数据，T2进行第二次查询时读取到的数据和第一次查询读取到的数据不一致</li>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A14.png" class title="category"></li>
 </ul>
 </li>
 <li><strong>可重复读</strong>(repeatable read):T2执行第一次查询之后，在事务结束之前之前事务不能修改(没说不能新增)对应的数据(避免了不可重复读(虚读)，但可能导致幻读)<ul>
 <li>幻读:T2对数据表中的数据进行修改然后查询，在查询之前T1向数据表中新增了一条数据，就导致T2以为修改了所有数据，但却查询除了与修改不一致的数据(T1事务新增的数据)</li>
-<li></li>
+<li><img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A15.png" class title="category"></li>
 </ul>
 </li>
 <li><strong>串行化</strong>(serializable):同时只允许一个事务对数据表进行操作(避免了脏读、虚读、幻读问题)</li>
 </ul>
 </li>
 </ul>
-
+<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A16.png" class title="category">
 
 <h5 id="8-16-5-设置数据库事务隔离级别"><a href="#8-16-5-设置数据库事务隔离级别" class="headerlink" title="8.16.5 设置数据库事务隔离级别"></a>8.16.5 设置数据库事务隔离级别</h5><blockquote>
 <p>我们可以通过设置数据库默认的事务隔离级别来控制事务之间的隔离性;<br>也可以通过客户端与数据库连接设置来设置事务间的隔离性(在应用程序中设置-Spring);<br>MySQL数据库默认的隔离级别为<strong>可重复读</strong></p>
@@ -1817,20 +1866,20 @@
 <h5 id="9-2-3-数据库设计三范式"><a href="#9-2-3-数据库设计三范式" class="headerlink" title="9.2.3 数据库设计三范式"></a>9.2.3 数据库设计三范式</h5><ul>
 <li><p><strong>第一范式</strong>:要求数据表中的字段(列)不可再分</p>
 <ul>
-<li>以下表格不符合第一范式(在数据库中创建不出第一范式的表)</li>
-<li>将细分的列作为单独的一列:</li>
+<li>以下表格不符合第一范式(在数据库中创建不出第一范式的表)<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A11.png" class title="category"></li>
+<li>将细分的列作为单独的一列:<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A12.png" class title="category"></li>
 </ul>
 </li>
 <li><p><strong>第二范式</strong>:不存在非关键字段对关键字段的部分依赖</p>
 <ul>
-<li>以下表不满足第二范式</li>
-<li>将每个关键字段列出来&#x2F;关键字段的组合也列出来，依次检查每个非关键字段</li>
+<li>以下表不满足第二范式<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A13.png" class title="category"></li>
+<li>将每个关键字段列出来&#x2F;关键字段的组合也列出来，依次检查每个非关键字段<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A14.png" class title="category"></li>
 </ul>
 </li>
 <li><p><strong>第三范式</strong>:不存在非关键字段之间的传递依赖</p>
 <ul>
-<li>以下数据表不符合第三范式</li>
-<li>将关键字段和被依赖的非关键字段分别作为主键，依次检查所有的非关键字段的依赖关系</li>
+<li>以下数据表不符合第三范式<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A15.png" class title="category"></li>
+<li>将关键字段和被依赖的非关键字段分别作为主键，依次检查所有的非关键字段的依赖关系<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A16.png" class title="category"></li>
 </ul>
 </li>
 </ul>
@@ -1840,7 +1889,7 @@
 <ul>
 <li>E-R图基本图例</li>
 </ul>
-
+<img src="/2022/07/17/mysql/E-R%E5%9B%BE.png" class title="category">
 
 <ul>
 <li>三线图:统计数据实体的表结构</li>
@@ -1853,7 +1902,7 @@
 <li>一对一：在任意一端创建外键与另一端建立主外键约束，并且将外键设置unique</li>
 </ol>
 </blockquote>
-
+<img src="/2022/07/17/mysql/%E4%B8%89%E7%BA%BF%E5%9B%BE.png" class title="category">
 
 <h5 id="9-2-5-数据库建模-PD"><a href="#9-2-5-数据库建模-PD" class="headerlink" title="9.2.5 数据库建模(PD)"></a>9.2.5 数据库建模(PD)</h5><blockquote>
 <p>E-R图实际上就是数据建模的一部分:</p>
@@ -1872,8 +1921,8 @@
 <li>PowerDesigner使用</li>
 </ol>
 <ul>
-<li>概念数据模型(选择workspace–右键–Conceptual Data Model),就相当于E-R</li>
-<li>逻辑数据模型(打开概念数据模型-tools-Generate Logical Data Model),体现了实体的主外键关联</li>
+<li>概念数据模型(选择workspace–右键–Conceptual Data Model),就相当于E-R<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A11.png" class title="category"></li>
+<li>逻辑数据模型(打开概念数据模型-tools-Generate Logical Data Model),体现了实体的主外键关联<img src="/2022/07/17/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E6%A8%A12.png" class title="category"></li>
 <li>物理数据模型(打开概念数据模型-tools-Generate Physical Data Model – 选择数据库类型及版本)<ul>
 <li>可以对物理数据模型进行微调</li>
 <li>可以通过物理数据模型生成建库建表的SQL语句(在物理数据模型的窗口中–Database工具条–Generate Datebase–生成SQL文件)</li>
