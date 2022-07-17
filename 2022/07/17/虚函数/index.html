@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 闲时写</title>
+  <title>虚函数 | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="闲时写">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="闲时写的一些理解，后续会进行修改和添加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚函数">
+<meta property="og:url" content="http://example.com/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="闲时写">
+<meta property="og:description" content="闲时写的一些理解，后续会进行修改和添加">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-17T13:47:16.000Z">
+<meta property="article:modified_time" content="2022-07-17T13:48:10.702Z">
 <meta property="article:author" content="bigbigtree">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
@@ -134,36 +139,184 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-虚函数" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      虚函数
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" class="archive-article-date">
+
+        
+        <a href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" class="archive-article-date">
   	<time datetime="2022-07-17T13:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/">虚函数</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>闲时写的一些理解，后续会进行修改和添加</p>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
+<h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><h2 id="虚函数表"><a href="#虚函数表" class="headerlink" title="虚函数表"></a>虚函数表</h2><ul>
+<li><ol>
+<li>何时生成:<strong>编译期间</strong></li>
+</ol>
+<ul>
+<li>编译的时候生成虚函数表:<strong>编译期间创建，编译器为每个含有虚函数的类创建一个虚函数表</strong><ul>
+<li><strong>在编译阶段生成，编译器将类中虚函数的地址存放在虚函数表中，虚函数表存在于全局数据区.data，每个类仅有一个，供所有对象共享</strong>(编译器将所有的虚函数地址放入虚函数表)</li>
+<li>“表格中的virtual functions地址是如何被建构起来的？在C++中，virtual functions（可经由其class object被调用）可以在编译时期获知。此外，这一组地址是固定不变的，执行期不可能新增或替换之。由于程序执行时，表格的大小和内容都不会改变，所以其建构和存取皆可以由编译器完全掌控，不需要执行期的任何介入。”</li>
+<li><a target="_blank" rel="noopener" href="http://www.manongjc.com/detail/51-opsvhjebrmfduxs.html">http://www.manongjc.com/detail/51-opsvhjebrmfduxs.html</a></li>
+</ul>
+</li>
+<li>虚函数指针(vptr,virtual pointer):<strong>运行期间创建，编译器在类构造函数中插入 将虚函数表的地址赋值给虚函数指针 的隐藏代码，因此对象只有运行期间才能获得虚函数指针,在调用构造函数构造对象时，设置虚表指针</strong>(虚指针指向虚函数表,然后通过虚指针偏移调用虚函数。)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoxiaoguailou/article/details/123274253">https://blog.csdn.net/xiaoxiaoguailou/article/details/123274253</a></li>
+</ul>
+</li>
+<li><ol start="2">
+<li>虚函数表指针初始化顺序</li>
+</ol>
+<ul>
+<li><p>无继承时：</p>
+<ul>
+<li>1、分配内存</li>
+<li>2、初始化列表之前赋值虚表指针</li>
+<li>3、列表初始化</li>
+<li>4、执行构造函数体</li>
+</ul>
+</li>
+<li><p>有继承时：</p>
+<ul>
+<li>1、分配内存</li>
+<li>2、基类构造过程（按照无继承来）</li>
+<li>3、初始化子类虚表指针</li>
+<li>4、子类列表初始化</li>
+<li>5、执行子类构造函数体</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jasonLee_lijiaqi/article/details/89073020?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-89073020-blog-104112771.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-89073020-blog-104112771.pc_relevant_paycolumn_v3&amp;utm_relevant_index=2">https://blog.csdn.net/jasonLee_lijiaqi/article/details/89073020?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89073020-blog-104112771.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89073020-blog-104112771.pc_relevant_paycolumn_v3&amp;utm_relevant_index=2</a></p>
+</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>虚函数表的内容</li>
+</ol>
+<ul>
+<li><ol>
+<li>在父类中 ，只要我们有虚函数成员，系统就会给他创建一个成员：虚函数表指针，注意，是个指针，指向虚函数表，虚函数表中存放的都是，这个父类创建的虚函数的入口地址，这个地址指向相应的虚函数。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>对于它的子类来说，如果它没有创建自己的虚函数，它继承了父类以后，会创建自己的虚函数指针，注意，这里的虚函数指针值与父类是不同的，也就是说它的虚函数表首地址不同，而虚函数表里指向的虚函数入口地址与父类的虚函数入口地址一样！因为它没有创建自己的虚函数！</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>如果它创建了自己的虚函数，那么它的虚函数表里对于的虚函数首地址就不同了，就指向了它自己创建的虚函数！</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>每个类都有自己的虚函数表(如果是虚函数),<strong>虚函数表</strong>的地址都是不同，而里面<strong>虚函数的地址</strong>如果子类没有实现则和父类的<strong>虚函数地址</strong>是一致的。(一个是表地址，一个是里面的虚函数地址)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36359022/article/details/81870219">https://blog.csdn.net/qq_36359022/article/details/81870219</a></p>
+</li>
+</ul>
+<h2 id="虚函数简介"><a href="#虚函数简介" class="headerlink" title="虚函数简介"></a>虚函数简介</h2><p><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/12165.html">https://coolshell.cn/articles/12165.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jerry19880126/p/3616999.html">https://www.cnblogs.com/jerry19880126/p/3616999.html</a></p>
+<h3 id="多态为何只能使用指针或者引用实现"><a href="#多态为何只能使用指针或者引用实现" class="headerlink" title="多态为何只能使用指针或者引用实现"></a>多态为何只能使用指针或者引用实现</h3><p>首先需要明白多态是根据虚函数来实现的</p>
+<ul>
+<li><ol>
+<li>“一个pointer或一个reference之所以支持多态，是因为它们并不引发内存任何“与类型有关的内存委托操作； 会受到改变的。只有它们所指向内存的大小和解释方式 而已”</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>指针和引用并不涉及内存中对象的类型转换，只改变内存的地址和大小</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>直接调用赋值&#x3D;会发生转型</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>简单来说比如 A *test_A &#x3D; new(B),用基类A的指针指向基类B创建的对象，这个只是改变了内存大小和解释方式，但是虚函数表的指针依旧还是B原来的，而且在虚函数表中子类B如果实现了基类A中的虚函数，那么他的虚函数表中的地址就会被替换成B中虚函数的地址，参考虚函数表的解释。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43327696/article/details/107671931">https://blog.csdn.net/weixin_43327696/article/details/107671931</a></p>
+</blockquote>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h3><ul>
+<li>场景:A是基类,B是继承A的子类,C是继承B的子类</li>
+</ul>
+<h4 id="为何要虚析构"><a href="#为何要虚析构" class="headerlink" title="为何要虚析构"></a>为何要虚析构</h4><ul>
+<li><ol>
+<li>虚析构是为了保证数据被释放，子类的析构函数可以被调用</li>
+</ol>
+<ul>
+<li>比如:<ul>
+<li><ol>
+<li>不是虚函数析构:以本身创建一个指针指向本身创建的类,调用的是本身的析构，然后层层析构</li>
+</ol>
+<ul>
+<li>C *test_C &#x3D; new(C); 调用C类的析构，层层析构</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>不是虚函数:以他的父类或者父父类创建一个指针指向本身创建的类,调用父类或者父父类创建的析构,然后层层析构(根据<strong>多态为何只能使用指针或者引用实现</strong>，改变了内存的地址和大小，指向的析构只能是自己的，无法调用子类的了)</li>
+</ol>
+<ul>
+<li>B *test_B &#x3D; new(C); 调用B类的析构,然后层层析构</li>
+<li>A *test_A &#x3D; new(C); 调用A类的析构,然后层层析构</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>是虚函数:以他的父类或者父父类创建一个指针指向本身创建的类，调用的是本身创建的类的析构函数开始层层析构</li>
+</ol>
+<ul>
+<li>A *test_A &#x3D; new(C); 调用C类的析构，然后层层析构</li>
+<li>可以参考上面的<strong>多态为何只能使用指针或者引用实现</strong>,其实是使用了子类的虚析构函数</li>
+<li>虚析构函数的调用，使用函数指针调用析构函数时(析构函数在虚函数表第一个)，他是直接往父类层层调用的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="不能被声明为虚函数"><a href="#不能被声明为虚函数" class="headerlink" title="不能被声明为虚函数"></a>不能被声明为虚函数</h2><ul>
+<li>1、普通函数（非类成员函数）；</li>
+<li>2、构造函数；</li>
+<li>3、内联函数；</li>
+<li>4、静态成员函数；</li>
+<li>5、友元函数；</li>
+<li>6、不会被继承的基类的析构函数（没有必要）。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45606415/article/details/107061831">https://blog.csdn.net/weixin_45606415/article/details/107061831</a></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -175,95 +328,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/17/mysql/" class="archive-article-date">
-  	<time datetime="2022-07-17T13:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/17/mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/mysql/">mysql</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/17/design/" class="archive-article-date">
-  	<time datetime="2022-07-17T08:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/design/">design</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -286,8 +450,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
