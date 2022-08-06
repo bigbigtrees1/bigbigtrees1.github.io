@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>大小端 | 闲时写</title>
+  <title>C++内存管理 | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法">
+  <meta name="description" content="C++内存管理笔记，结合侯捷老师视频，不一定记得很多(逐步更新)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大小端">
-<meta property="og:url" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/index.html">
+<meta property="og:title" content="C++内存管理">
+<meta property="og:url" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="闲时写">
-<meta property="og:description" content="毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法">
+<meta property="og:description" content="C++内存管理笔记，结合侯捷老师视频，不一定记得很多(逐步更新)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
-<meta property="article:published_time" content="2022-07-24T12:32:36.000Z">
-<meta property="article:modified_time" content="2022-07-31T07:15:49.595Z">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E7%9A%84%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/delete%E7%9A%84%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/array_new%E5%92%8Carray_delete.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E5%92%8Cdelete%E9%A1%BA%E5%BA%8F.png">
+<meta property="article:published_time" content="2022-07-25T12:53:38.000Z">
+<meta property="article:modified_time" content="2022-07-26T15:13:33.345Z">
 <meta property="article:author" content="bigbigtree">
-<meta property="article:tag" content="基础">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
+<meta name="twitter:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E7%9A%84%E8%BF%87%E7%A8%8B.png">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
   
@@ -135,42 +138,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大小端" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-内存管理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      大小端
+      C++内存管理
     </h1>
   
 
         
-        <a href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" class="archive-article-date">
-  	<time datetime="2022-07-24T12:32:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-24</time>
+        <a href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-07-25T12:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法</p>
+        <p>C++内存管理笔记，结合侯捷老师视频，不一定记得很多<br>(逐步更新)</p>
 <span id="more"></span>
 
-<h1 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h1><p>主机字节序又叫 CPU 字节序，其不是由操作系统决定的，而是由 CPU 指令集架构决定的。</p>
-<ul>
-<li>大端：（Big-Endian）就是把数值的高位字节放在内存的低位地址上，把数值的地位字节放在内存的高位地址上。</li>
-<li>小端：（Little-Endian）就是把数字的高位字节放在高位的地址上，低位字节放在低位地址上。</li>
+<h1 id="C-内存管理"><a href="#C-内存管理" class="headerlink" title="C++内存管理"></a>C++内存管理</h1><ul>
+<li>看这门课需要的基础<ul>
+<li><ol>
+<li>曾经动态分配并使用内存(memory)</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>曾经使用过C++标准库的容器(containers)</li>
+</ol>
+</li>
 </ul>
-<blockquote>
-<p>一般来说嵌入式的方案都是小端，而网络一般都是小端存储。</p>
+</li>
+</ul>
+<p>网站推荐:<a target="_blank" rel="noopener" href="https://gee.cs.oswego.edu/dl/">https://gee.cs.oswego.edu/dl/</a></p>
+<h2 id="第一讲-primitives"><a href="#第一讲-primitives" class="headerlink" title="第一讲 primitives"></a>第一讲 primitives</h2><blockquote>
+<p>primitives可以理解为原生的，里面包含<br>new, new[], new(), ::operator new(),…</p>
 </blockquote>
-<p>下面我们不使用union方式判断大小端，使用其他方法。</p>
-<img src="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png" class title="category">
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ul>
+<li>new的操作<ul>
+<li>第一步 分配内存</li>
+<li>第二步 调用构造函数</li>
+</ul>
+</li>
+</ul>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E7%9A%84%E8%BF%87%E7%A8%8B.png" class title="category">
+<p>(其实图片里面第一步和第二部可以合成一部，申请的同时进行类型转换，这里只是更直白所以这么写)</p>
+<h4 id="Array-new"><a href="#Array-new" class="headerlink" title="Array new"></a>Array new</h4><p>数组new 如:Complex *pca &#x3D; new Complex[3];</p>
+<blockquote>
+<p>使用这种方法时，这个类一定要有默认构造函数，因为new一个Array时你没有办法一一给定初值</p>
+</blockquote>
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><ul>
+<li>delete的操作<ul>
+<li>第一步 调用析构函数</li>
+<li>第二步 释放内存</li>
+</ul>
+</li>
+</ul>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/delete%E7%9A%84%E8%BF%87%E7%A8%8B.png" class title="category">
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0x12345678</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (*((<span class="type">char</span>*)&amp;i) == <span class="number">0x12</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;大端&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span>    </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;小端&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意:不能直接调用构造函数但是可以直接调用析构函数</p>
+<h4 id="Array-delete"><a href="#Array-delete" class="headerlink" title="Array delete"></a>Array delete</h4><p>数组delete 如:delete[]</p>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/array_new%E5%92%8Carray_delete.png" class title="category">
 
+<blockquote>
+<p>以上如果只使用delete而不是delete[]将可能导致内存泄漏(因为complex的析构其实无所谓，所以这里说可能，如果是其他类的析构函数有释放内存的操作等就会出现内存泄漏)<br><strong>为什么会出现内存泄漏</strong>?<br>因为根据内存结构排布，调用delete[]会触发N(根据你匹配的new)次该函数的析构，而如果只有delete则只会调用一次，后面new出来的不会进行释放，导致内存泄漏<br><strong>当然普通的new int[3]或者析构函数无所谓的类等，进行delete是无关紧要的，和上面说的一样，普通类型中析构中一般是无关紧要的操作，所以使用delete是无关紧要的，但是这样的编程观念是错误，要进行统一，使用delete[]</strong></p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>GUN编译器下new是自上而下，delete则是自下而上释放</strong></p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E5%92%8Cdelete%E9%A1%BA%E5%BA%8F.png" class title="category">
+
+<h2 id="第二讲-malloc-x2F-new"><a href="#第二讲-malloc-x2F-new" class="headerlink" title="第二讲 malloc&#x2F;new"></a>第二讲 malloc&#x2F;new</h2><h2 id="第三讲-std-allocator"><a href="#第三讲-std-allocator" class="headerlink" title="第三讲 std::allocator"></a>第三讲 std::allocator</h2><h2 id="第三讲-other-allocators"><a href="#第三讲-other-allocators" class="headerlink" title="第三讲 other allocators"></a>第三讲 other allocators</h2><h2 id="第四讲-loki-allocator"><a href="#第四讲-loki-allocator" class="headerlink" title="第四讲 loki::allocator"></a>第四讲 loki::allocator</h2>
       
 
       <!-- 增加版权声明 -->
@@ -183,7 +226,7 @@
           
           <br>
           <strong>本文链接：</strong>
-          <a rel="license" href="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/">http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</a>
+          <a rel="license" href="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</a>
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -228,7 +271,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -284,7 +327,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +341,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/07/27/c-11/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C++内存管理
+          c++11
         
       </div>
     </a>
   
   
-    <a href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">虚函数</div>
+    <a href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">大小端</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -328,6 +371,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">C++内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%AE%B2-primitives"><span class="toc-number">1.1.</span> <span class="toc-text">第一讲 primitives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.1.1.</span> <span class="toc-text">new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Array-new"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Array new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-number">1.1.2.</span> <span class="toc-text">delete</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Array-delete"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Array delete</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2-malloc-x2F-new"><span class="toc-number">1.2.</span> <span class="toc-text">第二讲 malloc&#x2F;new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-std-allocator"><span class="toc-number">1.3.</span> <span class="toc-text">第三讲 std::allocator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-other-allocators"><span class="toc-number">1.4.</span> <span class="toc-text">第三讲 other allocators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2-loki-allocator"><span class="toc-number">1.5.</span> <span class="toc-text">第四讲 loki::allocator</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>

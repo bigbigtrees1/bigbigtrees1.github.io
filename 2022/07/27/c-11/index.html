@@ -6,22 +6,65 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>大小端 | 闲时写</title>
+  <title>c++11 | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法">
+  <meta name="description" content="C++11笔记，结合侯捷老师视频，不一定记得很多，视频好像不全，第一次做视频笔记，写的不好">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大小端">
-<meta property="og:url" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/index.html">
+<meta property="og:title" content="c++11">
+<meta property="og:url" content="http://example.com/2022/07/27/c-11/index.html">
 <meta property="og:site_name" content="闲时写">
-<meta property="og:description" content="毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法">
+<meta property="og:description" content="C++11笔记，结合侯捷老师视频，不一定记得很多，视频好像不全，第一次做视频笔记，写的不好">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
-<meta property="article:published_time" content="2022-07-24T12:32:36.000Z">
-<meta property="article:modified_time" content="2022-07-31T07:15:49.595Z">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates2.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates3.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Unifrom_Initialization1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Range_based.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/=default,=delete.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Alias_Template.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Type_Alias_noexcept_override_final.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/noexcept.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/final.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/decltype.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/decltype1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/decltype2.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/decltype3.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/lambdas1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/lambdas2.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/lambdas3.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/lambdas4.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates4.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates5.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates6.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates7.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates8.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates9.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates10.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates11.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates12.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates13.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/C++keywords.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Move_Semantics1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/%E5%86%99%E4%B8%80%E4%B8%AA_Move-aware_class1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/%E5%86%99%E4%B8%80%E4%B8%AA_Move-aware_class2.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Move-aware_class_%E5%AF%B9%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%88%E8%83%BD%E6%B5%8B%E8%AF%951.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/Move-aware_class_%E5%AF%B9%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%88%E8%83%BD%E6%B5%8B%E8%AF%952.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E7%B1%BB.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/%E5%85%B3%E4%BA%8E%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%B3%95.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/array_tr1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/array_G4.9.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/hashtable.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/string_hashcode.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/string_hashcode1.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/string_hashcode3.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/%E4%B8%87%E7%94%A8hash_function.png">
+<meta property="og:image" content="http://example.com/2022/07/27/c-11/tuple1.png">
+<meta property="article:published_time" content="2022-07-27T14:40:13.000Z">
+<meta property="article:modified_time" content="2022-08-06T13:56:32.006Z">
 <meta property="article:author" content="bigbigtree">
-<meta property="article:tag" content="基础">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
+<meta name="twitter:image" content="http://example.com/2022/07/27/c-11/Variadic_Templates1.png">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
   
@@ -135,41 +178,286 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大小端" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-c-11" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      大小端
+      c++11
     </h1>
   
 
         
-        <a href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" class="archive-article-date">
-  	<time datetime="2022-07-24T12:32:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-24</time>
+        <a href="/2022/07/27/c-11/" class="archive-article-date">
+  	<time datetime="2022-07-27T14:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法</p>
+        <p>C++11笔记，结合侯捷老师视频，不一定记得很多，视频好像不全，第一次做视频笔记，写的不好</p>
 <span id="more"></span>
 
-<h1 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h1><p>主机字节序又叫 CPU 字节序，其不是由操作系统决定的，而是由 CPU 指令集架构决定的。</p>
+<h1 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h1><blockquote>
+<p>C++ 2.0 新特性包括语言和标准库两个层面，后者以header files形式呈现</p>
 <ul>
-<li>大端：（Big-Endian）就是把数值的高位字节放在内存的低位地址上，把数值的地位字节放在内存的高位地址上。</li>
-<li>小端：（Little-Endian）就是把数字的高位字节放在高位的地址上，低位字节放在低位地址上。</li>
+<li>C++标准库的header files不带副档名(.h)，例如: #include &lt;vector&gt;</li>
+<li>新式C header files不带副名称.h，例如:#include &lt;cstdio&gt;</li>
+<li>旧式C header files(带有副名称.h)仍可用，例如 #include &lt;stdio.h&gt;</li>
 </ul>
-<blockquote>
-<p>一般来说嵌入式的方案都是小端，而网络一般都是小端存储。</p>
 </blockquote>
-<p>下面我们不使用union方式判断大小端，使用其他方法。</p>
-<img src="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/%E5%A4%A7%E5%B0%8F%E7%AB%AF.png" class title="category">
+<ul>
+<li><p>了解你的编译器对C++2.0的支持度</p>
+<ul>
+<li>搜compiler support for c++11 and c++14就行</li>
+</ul>
+</li>
+<li><p>C++11 FAQ</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stroustrup.com/C++11FAQ.html">https://stroustrup.com/C++11FAQ.html</a></li>
+</ul>
+</li>
+<li><p>资料网站等</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.cplusplus.com/">http://www.cplusplus.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://qingcms.gitee.io/cppreference/20210212/zh/">https://qingcms.gitee.io/cppreference/20210212/zh/</a></li>
+<li><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/">https://gcc.gnu.org/onlinedocs/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="第一讲-语言"><a href="#第一讲-语言" class="headerlink" title="第一讲 语言"></a>第一讲 语言</h2><blockquote>
+<p>C++ 的演化<br>C++ 98(1.0)<br>C++ 03(TR1, Technical Report1)<br>C++11 (2.0)<br>C++ 14</p>
+</blockquote>
+<h3 id="1-Variadic-Templates-数量不定的模板参数，入门"><a href="#1-Variadic-Templates-数量不定的模板参数，入门" class="headerlink" title="1. Variadic Templates(数量不定的模板参数，入门)"></a>1. Variadic Templates(数量不定的模板参数，入门)</h3><blockquote>
+<p>这种方式帮助我们实现递归，但是当args里面没有数据的时候必须写一个空的实现，不然编译报错(使用这个方式的时候一定要添加一个处理最后情况的函数)<br>sizeof…(args)可以知道args里面有多少个</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates1.png" class title="category">
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0x12345678</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (*((<span class="type">char</span>*)&amp;i) == <span class="number">0x12</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;大端&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span>    </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;小端&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>可以很方便地完成recursive function call(函数递归调用)<br>对这个理解不是很深，可能没真正看到完美实现地地方<br>下面第3个函数感觉不对劲，他第二个参数是const T，最后一个数据调用时候按理只有一个speed怎么会调用过去</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates2.png" class title="category">
+
+<hr>
+<blockquote>
+<p>通过这种方式来使用类继承的Head定义<br>这个也不是很懂</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates3.png" class title="category">
+
+<h3 id="2-Spaces-in-Template-Expression、nullptr-and-std–nullptr-t、Automatic-Type-Deduction-with-auto"><a href="#2-Spaces-in-Template-Expression、nullptr-and-std–nullptr-t、Automatic-Type-Deduction-with-auto" class="headerlink" title="2. Spaces in Template Expression、nullptr and std–nullptr_t、Automatic Type Deduction with auto"></a>2. Spaces in Template Expression、nullptr and std–nullptr_t、Automatic Type Deduction with auto</h3><blockquote>
+<ol>
+<li>vector&lt;list&lt;int&gt; &gt; 以前的定义两个&gt;&gt;中间不空行会报错，现在支持vector&lt;list&lt;int&gt;&gt;</li>
+<li>nullptr 用来代替0或者NULL(空指针)</li>
+<li>auto 自动分析变量类型(编译器推导，一般用在type很长，复杂的时候用的，普通使用少用)</li>
+</ol>
+</blockquote>
+<h3 id="3-Unifrom-Initialization-一致性初始化"><a href="#3-Unifrom-Initialization-一致性初始化" class="headerlink" title="3. Unifrom Initialization(一致性初始化)"></a>3. Unifrom Initialization(一致性初始化)</h3><img src="/2022/07/27/c-11/Unifrom_Initialization1.png" class title="category">
+
+<h3 id="4-Initializer-liss"><a href="#4-Initializer-liss" class="headerlink" title="4. Initializer_liss"></a>4. Initializer_liss</h3><blockquote>
+<p>Initializer_list和Variadic Templates不太一样<br>编译器在准备好array之后会调用Initializer_list(只是使用浅拷贝)</p>
+</blockquote>
+<h3 id="5-Explicit-for-ctors-taking-more-than-one-argument"><a href="#5-Explicit-for-ctors-taking-more-than-one-argument" class="headerlink" title="5. Explicit for ctors taking more than one argument"></a>5. Explicit for ctors taking more than one argument</h3><blockquote>
+<p>C++11之前 Explicit对于只有一个参数或者N-1个为默认值的构造函数有效，防止隐式转换<br>C++11之后 可以多个入参并且都可以不是默认值，防止隐式转换</p>
+</blockquote>
+<h3 id="6-Range－based-for-statement"><a href="#6-Range－based-for-statement" class="headerlink" title="6. Range－based for statement"></a>6. Range－based for statement</h3><blockquote>
+<p>auto &amp; elem : vec。可以修改这个容器里面的值，相当于对本来的值进行操作<br>const C&amp; elem : vs。如果vs到C要进行转换那么要注意C的构造函数是否加了Explicit，否则可能导致失败，因为Explicit不允许进行隐式转换</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Range_based.png" class title="category">
+
+<h3 id="7-x3D-default-x3D-delete"><a href="#7-x3D-default-x3D-delete" class="headerlink" title="7. &#x3D;default, &#x3D;delete"></a>7. &#x3D;default, &#x3D;delete</h3><blockquote>
+<p>这两种语法基本用于构造函数，析构函数，拷贝构造，拷贝复制，搬移构造(move)，搬移赋值(move)。<br>如果你自行定义了一个ctor，那么编译器就不会再给你一个default ctor<br>如果你强制加上&#x3D;default，就可以重新获得并使用default ctor</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>构造函数可以有很多个，但是拷贝构造，赋值只能有一个<br>一般的函数没有默认版本，所以不能使用&#x3D;default</p>
+</blockquote>
+<img src="/2022/07/27/c-11/=default,=delete.png" class title="category">
+
+<hr>
+<blockquote>
+<p>如果一个类带有指针，那么就要我们自己来写big-Five(构造函数，析构函数，拷贝构造，拷贝复制，搬移构造(move)，搬移赋值)</p>
+</blockquote>
+<h3 id="8-Alias-Template-化名"><a href="#8-Alias-Template-化名" class="headerlink" title="8. Alias Template(化名)"></a>8. Alias Template(化名)</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> Vec = std::Vector&lt;T, MyAlloc&lt;T&gt;&gt;;</span><br><span class="line">Vec&lt;<span class="type">int</span>&gt; coll;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/07/27/c-11/Alias_Template.png" class title="category">
+
+<blockquote>
+<p>不能对Alias Template进行特化</p>
+</blockquote>
+<h3 id="9-Template-template-parameter"><a href="#9-Template-template-parameter" class="headerlink" title="9. Template template parameter"></a>9. Template template parameter</h3><blockquote>
+<p>有点深奥</p>
+</blockquote>
+<h3 id="10-Type-Alias-noexcept-override-final"><a href="#10-Type-Alias-noexcept-override-final" class="headerlink" title="10. Type Alias, noexcept, override, final"></a>10. Type Alias, noexcept, override, final</h3><h4 id="①-type-Alias"><a href="#①-type-Alias" class="headerlink" title="①. type Alias"></a>①. type Alias</h4><blockquote>
+<p>类似typedef一个函数</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Type_Alias_noexcept_override_final.png" class title="category">
+
+<h4 id="②-noexcept"><a href="#②-noexcept" class="headerlink" title="②. noexcept"></a>②. noexcept</h4><blockquote>
+<p>在函数后面添加，保证函数不会丢出异常<br>void foo() noexcept(true);<br>true可以是其他值，表示在这个情况下不丢出异常我才不丢出异常,比如图中的</p>
+</blockquote>
+<img src="/2022/07/27/c-11/noexcept.png" class title="category">
+
+<hr>
+<blockquote>
+<p>异常最好要进行处理，如果异常都不处理会一直往上方传，最终会调用到std::terminate(),最后函数里面调用std::abort()，最后程序中断，结束</p>
+</blockquote>
+<h4 id="③-override"><a href="#③-override" class="headerlink" title="③. override"></a>③. override</h4><blockquote>
+<p>你重写基类相同函数但是可能参数或者返回类型写错，进行报错提醒。</p>
+</blockquote>
+<h4 id="④-final"><a href="#④-final" class="headerlink" title="④. final"></a>④. final</h4><blockquote>
+<ol>
+<li>防止后续继承这个类</li>
+<li>防止虚函数被重写</li>
+</ol>
+</blockquote>
+<img src="/2022/07/27/c-11/final.png" class title="category">
+
+<h3 id="11-decltype"><a href="#11-decltype" class="headerlink" title="11. decltype"></a>11. decltype</h3><blockquote>
+<p>可以让编译器帮你分析出这个对象或者结果的类型</p>
+</blockquote>
+<img src="/2022/07/27/c-11/decltype.png" class title="category">
+
+<hr>
+<blockquote>
+<ol>
+<li>声明返回类型</li>
+</ol>
+</blockquote>
+<img src="/2022/07/27/c-11/decltype1.png" class title="category">
+<blockquote>
+<ol start="2">
+<li>用于编程中<br>图中一定要传容器，因为要取迭代器</li>
+</ol>
+</blockquote>
+<img src="/2022/07/27/c-11/decltype2.png" class title="category">
+<blockquote>
+<ol start="3">
+<li>用于lambda</li>
+</ol>
+</blockquote>
+<img src="/2022/07/27/c-11/decltype3.png" class title="category">
+
+<h3 id="12-Lambdas"><a href="#12-Lambdas" class="headerlink" title="12. Lambdas"></a>12. Lambdas</h3><blockquote>
+<p>类似仿函数，但是方法又不同，改变了stl标准库的使用方式<br>可以想象成是一个函数对象</p>
+</blockquote>
+<img src="/2022/07/27/c-11/lambdas1.png" class title="category">
+
+<hr>
+<blockquote>
+<p>[]导入器 可以当成另外一种入参<br>()里面写参数<br>mutable 表示[]里面的数据是否可以被改变<br>throwSpec 是否可以抛出异常<br>retType 代表lambdas的返回类型<br>mutable throwSpec retType可有可无，但是只要有一个存在就要写()</p>
+</blockquote>
+<img src="/2022/07/27/c-11/lambdas2.png" class title="category">
+
+<hr>
+<blockquote>
+<p>第一个为什么会出现这个情况，因为传入之前的id是int id &#x3D; 0; 后面才定义了id &#x3D; 42;<br>第二个为什么会改变，因为导入器里面是引用，里面变了影响外面，外面变了影响里面<br>第三个报错是因为没有mutable，不能被改变，只能读不能写</p>
+</blockquote>
+<img src="/2022/07/27/c-11/lambdas3.png" class title="category">
+
+<hr>
+<blockquote>
+<p>编译器对lambdas大致如何解释的</p>
+</blockquote>
+<img src="/2022/07/27/c-11/lambdas4.png" class title="category">
+
+<h3 id="13-Variadic-Templates-深入"><a href="#13-Variadic-Templates-深入" class="headerlink" title="13. Variadic Templates(深入)"></a>13. Variadic Templates(深入)</h3><blockquote>
+<ol>
+<li>注意…的位置(即图中的①②③)</li>
+</ol>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates4.png" class title="category">
+
+<h4 id="①-案例1-递归打印"><a href="#①-案例1-递归打印" class="headerlink" title="①. 案例1 (递归打印)"></a>①. 案例1 (递归打印)</h4><blockquote>
+<p>这种方式帮助我们实现递归，但是当args里面没有数据的时候必须写一个空的实现，不然编译报错(使用这个方式的时候一定要添加一个处理最后情况的函数)<br>模板谁更特化更特殊就调用谁(所以①和③共存的时候调用①)</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates5.png" class title="category">
+
+<h4 id="②-案例2-Variadic-Templates重写printf"><a href="#②-案例2-Variadic-Templates重写printf" class="headerlink" title="②. 案例2 (Variadic Templates重写printf)"></a>②. 案例2 (Variadic Templates重写printf)</h4><blockquote>
+<p>其实这里面%d%s%p%f\n并没有用处，只是为了模拟c的printf</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates6.png" class title="category">
+
+<h4 id="③-案例3-max函数initializer-list实现"><a href="#③-案例3-max函数initializer-list实现" class="headerlink" title="③. 案例3 (max函数initializer_list实现)"></a>③. 案例3 (max函数initializer_list实现)</h4><blockquote>
+<p>参数类型都一样可以使用initializer_list而不用使用Variadic_Templates<br>initializer_list背后使用array实现</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates7.png" class title="category">
+
+<h4 id="④-案例4-max函数Variadic-Templates实现"><a href="#④-案例4-max函数Variadic-Templates实现" class="headerlink" title="④. 案例4 (max函数Variadic Templates实现)"></a>④. 案例4 (max函数Variadic Templates实现)</h4><img src="/2022/07/27/c-11/Variadic_Templates8.png" class title="category">
+
+<h4 id="⑤-案例5-max函数Variadic-Templates实现"><a href="#⑤-案例5-max函数Variadic-Templates实现" class="headerlink" title="⑤. 案例5 (max函数Variadic Templates实现)"></a>⑤. 案例5 (max函数Variadic Templates实现)</h4><img src="/2022/07/27/c-11/Variadic_Templates9.png" class title="category">
+
+<h4 id="⑥-案例6-用于递归继承"><a href="#⑥-案例6-用于递归继承" class="headerlink" title="⑥. 案例6 (用于递归继承)"></a>⑥. 案例6 (用于递归继承)</h4><blockquote>
+<p>编译不过 问题出在typename Head::type<br>解决方法 1. 改成auto head()-&gt;decltype(m_head)2. 直接用Head<br>下面两张是编译通过的</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Variadic_Templates10.png" class title="category">
+<img src="/2022/07/27/c-11/Variadic_Templates11.png" class title="category">
+<img src="/2022/07/27/c-11/Variadic_Templates12.png" class title="category">
+
+<h4 id="⑦-案例7-用于递归复合"><a href="#⑦-案例7-用于递归复合" class="headerlink" title="⑦. 案例7 (用于递归复合)"></a>⑦. 案例7 (用于递归复合)</h4><img src="/2022/07/27/c-11/Variadic_Templates13.png" class title="category">
+
+<h3 id="C-keywords"><a href="#C-keywords" class="headerlink" title="C++keywords"></a>C++keywords</h3><img src="/2022/07/27/c-11/C++keywords.png" class title="category">
+
+<h2 id="第二讲-标准库"><a href="#第二讲-标准库" class="headerlink" title="第二讲 标准库"></a>第二讲 标准库</h2><h3 id="1-Rvalue-references-右值引用-and-Move-Semantics"><a href="#1-Rvalue-references-右值引用-and-Move-Semantics" class="headerlink" title="1. Rvalue references(右值引用) and Move Semantics"></a>1. Rvalue references(右值引用) and Move Semantics</h3><h4 id="①-Rvalue-references-右值引用"><a href="#①-Rvalue-references-右值引用" class="headerlink" title="①. Rvalue references(右值引用)"></a>①. Rvalue references(右值引用)</h4><blockquote>
+<p>一种新的类型，减少一些非必要的copy(move搭配右值使用，容器里面的一些操作会使用move)<br>当右手边是一个右值，那么左手边的这个值可以不必要重新分配内存而可以直接强行把右值赋进来。<br>临时对象就是一种右值<br>右值不能放在左边</p>
+</blockquote>
+<h4 id="②-Move-Semantics"><a href="#②-Move-Semantics" class="headerlink" title="②. Move Semantics"></a>②. Move Semantics</h4><blockquote>
+<p>std::move(a) 相当于返回它的右值</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Move_Semantics1.png" class title="category">
+
+<h3 id="写一个-Move-aware-class"><a href="#写一个-Move-aware-class" class="headerlink" title="写一个 Move-aware class"></a>写一个 Move-aware class</h3><blockquote>
+<p>为什么str.len &#x3D; 0; str._data &#x3D; NULL?<br>因为这是搬移，赋值给新的之后(浅拷贝过去)，原本的值要清掉</p>
+</blockquote>
+<img src="/2022/07/27/c-11/%E5%86%99%E4%B8%80%E4%B8%AA_Move-aware_class1.png" class title="category">
+<img src="/2022/07/27/c-11/%E5%86%99%E4%B8%80%E4%B8%AA_Move-aware_class2.png" class title="category">
+
+<h3 id="Move-aware-class-对容器的效能测试"><a href="#Move-aware-class-对容器的效能测试" class="headerlink" title="Move-aware class 对容器的效能测试"></a>Move-aware class 对容器的效能测试</h3><blockquote>
+<p>为什么vector的move比copy快那么多<br>copy是深拷贝一个一个拷贝过去，move只是改变地址简单赋值(浅拷贝)，头尾指针地址改一下(其实有三个指针)</p>
+</blockquote>
+<img src="/2022/07/27/c-11/Move-aware_class_%E5%AF%B9%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%88%E8%83%BD%E6%B5%8B%E8%AF%951.png" class title="category">
+<img src="/2022/07/27/c-11/Move-aware_class_%E5%AF%B9%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%88%E8%83%BD%E6%B5%8B%E8%AF%952.png" class title="category">
+
+<h3 id="容器—结构与分类-旧与新的比较-—-关于实现手法"><a href="#容器—结构与分类-旧与新的比较-—-关于实现手法" class="headerlink" title="容器—结构与分类_旧与新的比较 — 关于实现手法"></a>容器—结构与分类_旧与新的比较 — 关于实现手法</h3><img src="/2022/07/27/c-11/%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E7%B1%BB.png" class title="category">
+<img src="/2022/07/27/c-11/%E5%85%B3%E4%BA%8E%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%B3%95.png" class title="category">
+
+<h3 id="容器array"><a href="#容器array" class="headerlink" title="容器array"></a>容器array</h3><blockquote>
+<p>TR1版本</p>
+</blockquote>
+<img src="/2022/07/27/c-11/array_tr1.png" class title="category">
+<blockquote>
+<p>G4.9版本</p>
+</blockquote>
+<img src="/2022/07/27/c-11/array_G4.9.png" class title="category">
+
+<h3 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h3><blockquote>
+<p>不定序容器(放入顺序不代表容器里面的顺序)<br>当你使用这个的时候，你放入的类型必须要提供一个函数来计算hashcode，hashcode用来计算放置位置<br>当一个位置(视频里面叫篮子)里面的元素数量超过总位置数则打乱重新计算，重新计算时位置变成原来的两倍左右的一个质数(素数)</p>
+</blockquote>
+<img src="/2022/07/27/c-11/hashtable.png" class title="category">
+
+<h3 id="hash-function"><a href="#hash-function" class="headerlink" title="hash function"></a>hash function</h3><blockquote>
+<p>①. 整形<br>整形的hash function(计算hashcode) 传入什么返回什么<br>int i &#x3D; hash<int>()(32);<br>②. 字符串<br>G2.9没有提供容器内参数是std::string的hashcode计算(hash&lt;std::string&gt;),G4.9提供<br>G2.9版本</int></p>
+</blockquote>
+<img src="/2022/07/27/c-11/string_hashcode.png" class title="category">
+<img src="/2022/07/27/c-11/string_hashcode1.png" class title="category">
+<blockquote>
+<p>G4.9版本</p>
+</blockquote>
+<img src="/2022/07/27/c-11/string_hashcode3.png" class title="category">
+
+<hr>
+<blockquote>
+<p>万用hash_function(感觉视频少了这一课)</p>
+</blockquote>
+<img src="/2022/07/27/c-11/%E4%B8%87%E7%94%A8hash_function.png" class title="category">
+
+<h3 id="tuple-视频好像不全"><a href="#tuple-视频好像不全" class="headerlink" title="tuple(视频好像不全)"></a>tuple(视频好像不全)</h3><blockquote>
+<p>tuple想打印记得重载&lt;&lt;操作符进行输出<br>std::tie会将变量的引用整合成一个tuple，从而实现批量赋值<br>1、std::tie(a,b,c) &#x3D; std::tuple&lt;int,int,double&gt;(1,2,4.1); &#x2F;&#x2F; 用于解包tuple<br>2、std::tuple&lt;int, int, double&gt;  pu &#x3D; std::tie(a,b,c); &#x2F;&#x2F; 创建到其参数或 std::ignore 实例的左值引用的tuple。<br>3、std::tie(a, b) &#x3D; std::make_tuple(2, 3);  </p>
+</blockquote>
+<img src="/2022/07/27/c-11/tuple1.png" class title="category">
 
       
 
@@ -183,7 +471,7 @@
           
           <br>
           <strong>本文链接：</strong>
-          <a rel="license" href="http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/">http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</a>
+          <a rel="license" href="http://example.com/2022/07/27/c-11/">http://example.com/2022/07/27/c-11/</a>
           <br>
           <strong>版权声明：</strong>
           本作品采用
@@ -228,7 +516,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -284,7 +572,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/27/c-11/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +586,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++内存管理
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">虚函数</div>
+    <a href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++内存管理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -328,6 +607,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-11"><span class="toc-number">1.</span> <span class="toc-text">C++11</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%AE%B2-%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一讲 语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Variadic-Templates-%E6%95%B0%E9%87%8F%E4%B8%8D%E5%AE%9A%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0%EF%BC%8C%E5%85%A5%E9%97%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. Variadic Templates(数量不定的模板参数，入门)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Spaces-in-Template-Expression%E3%80%81nullptr-and-std%E2%80%93nullptr-t%E3%80%81Automatic-Type-Deduction-with-auto"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. Spaces in Template Expression、nullptr and std–nullptr_t、Automatic Type Deduction with auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Unifrom-Initialization-%E4%B8%80%E8%87%B4%E6%80%A7%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. Unifrom Initialization(一致性初始化)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Initializer-liss"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. Initializer_liss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Explicit-for-ctors-taking-more-than-one-argument"><span class="toc-number">1.1.5.</span> <span class="toc-text">5. Explicit for ctors taking more than one argument</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Range%EF%BC%8Dbased-for-statement"><span class="toc-number">1.1.6.</span> <span class="toc-text">6. Range－based for statement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-x3D-default-x3D-delete"><span class="toc-number">1.1.7.</span> <span class="toc-text">7. &#x3D;default, &#x3D;delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Alias-Template-%E5%8C%96%E5%90%8D"><span class="toc-number">1.1.8.</span> <span class="toc-text">8. Alias Template(化名)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Template-template-parameter"><span class="toc-number">1.1.9.</span> <span class="toc-text">9. Template template parameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Type-Alias-noexcept-override-final"><span class="toc-number">1.1.10.</span> <span class="toc-text">10. Type Alias, noexcept, override, final</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-type-Alias"><span class="toc-number">1.1.10.1.</span> <span class="toc-text">①. type Alias</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-noexcept"><span class="toc-number">1.1.10.2.</span> <span class="toc-text">②. noexcept</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2-override"><span class="toc-number">1.1.10.3.</span> <span class="toc-text">③. override</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A3-final"><span class="toc-number">1.1.10.4.</span> <span class="toc-text">④. final</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-decltype"><span class="toc-number">1.1.11.</span> <span class="toc-text">11. decltype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Lambdas"><span class="toc-number">1.1.12.</span> <span class="toc-text">12. Lambdas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Variadic-Templates-%E6%B7%B1%E5%85%A5"><span class="toc-number">1.1.13.</span> <span class="toc-text">13. Variadic Templates(深入)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-%E6%A1%88%E4%BE%8B1-%E9%80%92%E5%BD%92%E6%89%93%E5%8D%B0"><span class="toc-number">1.1.13.1.</span> <span class="toc-text">①. 案例1 (递归打印)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-%E6%A1%88%E4%BE%8B2-Variadic-Templates%E9%87%8D%E5%86%99printf"><span class="toc-number">1.1.13.2.</span> <span class="toc-text">②. 案例2 (Variadic Templates重写printf)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2-%E6%A1%88%E4%BE%8B3-max%E5%87%BD%E6%95%B0initializer-list%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.13.3.</span> <span class="toc-text">③. 案例3 (max函数initializer_list实现)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A3-%E6%A1%88%E4%BE%8B4-max%E5%87%BD%E6%95%B0Variadic-Templates%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.13.4.</span> <span class="toc-text">④. 案例4 (max函数Variadic Templates实现)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A4-%E6%A1%88%E4%BE%8B5-max%E5%87%BD%E6%95%B0Variadic-Templates%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.13.5.</span> <span class="toc-text">⑤. 案例5 (max函数Variadic Templates实现)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A5-%E6%A1%88%E4%BE%8B6-%E7%94%A8%E4%BA%8E%E9%80%92%E5%BD%92%E7%BB%A7%E6%89%BF"><span class="toc-number">1.1.13.6.</span> <span class="toc-text">⑥. 案例6 (用于递归继承)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A6-%E6%A1%88%E4%BE%8B7-%E7%94%A8%E4%BA%8E%E9%80%92%E5%BD%92%E5%A4%8D%E5%90%88"><span class="toc-number">1.1.13.7.</span> <span class="toc-text">⑦. 案例7 (用于递归复合)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-keywords"><span class="toc-number">1.1.14.</span> <span class="toc-text">C++keywords</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2-%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text">第二讲 标准库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Rvalue-references-%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8-and-Move-Semantics"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Rvalue references(右值引用) and Move Semantics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-Rvalue-references-%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">①. Rvalue references(右值引用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-Move-Semantics"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">②. Move Semantics</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA-Move-aware-class"><span class="toc-number">1.2.2.</span> <span class="toc-text">写一个 Move-aware class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Move-aware-class-%E5%AF%B9%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%88%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">Move-aware class 对容器的效能测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E2%80%94%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E7%B1%BB-%E6%97%A7%E4%B8%8E%E6%96%B0%E7%9A%84%E6%AF%94%E8%BE%83-%E2%80%94-%E5%85%B3%E4%BA%8E%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">容器—结构与分类_旧与新的比较 — 关于实现手法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8array"><span class="toc-number">1.2.5.</span> <span class="toc-text">容器array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashtable"><span class="toc-number">1.2.6.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash-function"><span class="toc-number">1.2.7.</span> <span class="toc-text">hash function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tuple-%E8%A7%86%E9%A2%91%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%85%A8"><span class="toc-number">1.2.8.</span> <span class="toc-text">tuple(视频好像不全)</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
