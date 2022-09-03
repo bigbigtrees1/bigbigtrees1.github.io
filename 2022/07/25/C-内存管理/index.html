@@ -16,11 +16,41 @@
 <meta property="og:description" content="C++内存管理笔记，结合侯捷老师视频，不一定记得很多(逐步更新)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E7%9A%84%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/placement_new.png">
 <meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/delete%E7%9A%84%E8%BF%87%E7%A8%8B.png">
 <meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/array_new%E5%92%8Carray_delete.png">
 <meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E5%92%8Cdelete%E9%A1%BA%E5%BA%8F.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%87%8D%E8%BD%BDnew_delete1.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/per-class_allocator1.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/per-class_allocator2.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/static_allocator1.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/static_allocator2.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/Macro_for_static_allocator.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new_handler.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6_malloc.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/BC6%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G4.9pull_alloc%E7%94%A8%E4%BE%8B.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/embedded_pointers.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A51.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A52.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A53.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A54.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A55.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A56.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A57.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A58.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A59.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A510.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A511.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%831.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%832.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%833.png">
+<meta property="og:image" content="http://example.com/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/HEADER%E7%BB%93%E6%9E%84%E4%BD%93.png">
 <meta property="article:published_time" content="2022-07-25T12:53:38.000Z">
-<meta property="article:modified_time" content="2022-07-26T15:13:33.345Z">
+<meta property="article:modified_time" content="2022-08-16T13:31:06.850Z">
 <meta property="article:author" content="bigbigtree">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -178,7 +208,7 @@
 <h2 id="第一讲-primitives"><a href="#第一讲-primitives" class="headerlink" title="第一讲 primitives"></a>第一讲 primitives</h2><blockquote>
 <p>primitives可以理解为原生的，里面包含<br>new, new[], new(), ::operator new(),…</p>
 </blockquote>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ul>
+<h3 id="1-1-new"><a href="#1-1-new" class="headerlink" title="1.1 new"></a>1.1 new</h3><ul>
 <li>new的操作<ul>
 <li>第一步 分配内存</li>
 <li>第二步 调用构造函数</li>
@@ -187,11 +217,16 @@
 </ul>
 <img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E7%9A%84%E8%BF%87%E7%A8%8B.png" class title="category">
 <p>(其实图片里面第一步和第二部可以合成一部，申请的同时进行类型转换，这里只是更直白所以这么写)</p>
-<h4 id="Array-new"><a href="#Array-new" class="headerlink" title="Array new"></a>Array new</h4><p>数组new 如:Complex *pca &#x3D; new Complex[3];</p>
+<h4 id="1-1-1-Array-new"><a href="#1-1-1-Array-new" class="headerlink" title="1.1.1 Array new"></a>1.1.1 Array new</h4><p>数组new 如:Complex *pca &#x3D; new Complex[3];</p>
 <blockquote>
 <p>使用这种方法时，这个类一定要有默认构造函数，因为new一个Array时你没有办法一一给定初值</p>
 </blockquote>
-<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><ul>
+<h4 id="1-1-2-placement-new"><a href="#1-1-2-placement-new" class="headerlink" title="1.1.2 placement new"></a>1.1.2 placement new</h4><blockquote>
+<p>允许将对象构建于已经分配好的内存中(allocated memory)<br>在operator new(size_t, void *)中不进行操作是正确的，因为你传入的指针是已经申请好内存的地址</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/placement_new.png" class title="category">
+
+<h3 id="1-2-delete"><a href="#1-2-delete" class="headerlink" title="1.2 delete"></a>1.2 delete</h3><ul>
 <li>delete的操作<ul>
 <li>第一步 调用析构函数</li>
 <li>第二步 释放内存</li>
@@ -201,7 +236,7 @@
 <img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/delete%E7%9A%84%E8%BF%87%E7%A8%8B.png" class title="category">
 
 <p>注意:不能直接调用构造函数但是可以直接调用析构函数</p>
-<h4 id="Array-delete"><a href="#Array-delete" class="headerlink" title="Array delete"></a>Array delete</h4><p>数组delete 如:delete[]</p>
+<h4 id="1-2-1-Array-delete"><a href="#1-2-1-Array-delete" class="headerlink" title="1.2.1 Array delete"></a>1.2.1 Array delete</h4><p>数组delete 如:delete[]</p>
 <img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/array_new%E5%92%8Carray_delete.png" class title="category">
 
 <blockquote>
@@ -213,7 +248,174 @@
 </blockquote>
 <img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new%E5%92%8Cdelete%E9%A1%BA%E5%BA%8F.png" class title="category">
 
-<h2 id="第二讲-malloc-x2F-new"><a href="#第二讲-malloc-x2F-new" class="headerlink" title="第二讲 malloc&#x2F;new"></a>第二讲 malloc&#x2F;new</h2><h2 id="第三讲-std-allocator"><a href="#第三讲-std-allocator" class="headerlink" title="第三讲 std::allocator"></a>第三讲 std::allocator</h2><h2 id="第三讲-other-allocators"><a href="#第三讲-other-allocators" class="headerlink" title="第三讲 other allocators"></a>第三讲 other allocators</h2><h2 id="第四讲-loki-allocator"><a href="#第四讲-loki-allocator" class="headerlink" title="第四讲 loki::allocator"></a>第四讲 loki::allocator</h2>
+<h3 id="1-3-重载new-x2F-delete"><a href="#1-3-重载new-x2F-delete" class="headerlink" title="1.3 重载new&#x2F;delete"></a>1.3 重载new&#x2F;delete</h3><ul>
+<li>全局</li>
+</ul>
+<blockquote>
+<p>重载全局的::operator new&#x2F;delete不可以被声明在一个namespace中</p>
+</blockquote>
+<ul>
+<li>类中</li>
+</ul>
+<blockquote>
+<p>类中重载的operator new&#x2F;delete必须是静态(编写程序中可以不加是因为编译器默认静态)<br><strong>原因是通过重载的new创建对象，目前正处于创建对象的过程中，手上并没有一个对象，因此无法通过对象调用一般的函数(比如重载后的new&#x2F;delete)，所以new&#x2F;delete必须是静态的，这样就可以不通过对象就可以调用这些函数。</strong></p>
+</blockquote>
+<ul>
+<li>重载示例<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%87%8D%E8%BD%BDnew_delete1.png" class title="category"></li>
+</ul>
+<h3 id="1-4-per-class-allocator"><a href="#1-4-per-class-allocator" class="headerlink" title="1.4 per-class allocator"></a>1.4 per-class allocator</h3><blockquote>
+<p>自己定义一个类的内存申请管理<br>目的为了速度更快，并且申请到的cookie尽量少，因为如果你申请1000个类那么其实就要malloc1000次，那就有1000个cookie，现在需要减少cookie，所以进行内存池管理。(cookie其实就是内存申请上下方的那几个字节)</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>第一版</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/per-class_allocator1.png" class title="category">
+<blockquote>
+<p>第二版</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/per-class_allocator2.png" class title="category">
+
+<h3 id="1-5-static-allocator"><a href="#1-5-static-allocator" class="headerlink" title="1.5 static allocator"></a>1.5 static allocator</h3><blockquote>
+<p>每个类都写per-class allocator太多了，不如把他总结起来由一个class实现</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/static_allocator1.png" class title="category">
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/static_allocator2.png" class title="category">
+
+<h3 id="1-6-Macro-for-static-allocator"><a href="#1-6-Macro-for-static-allocator" class="headerlink" title="1.6 Macro for static allocator"></a>1.6 Macro for static allocator</h3><blockquote>
+<p>利用宏来代替，直接填入宏函数不需要写那么多代码</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/Macro_for_static_allocator.png" class title="category">
+
+<h3 id="1-7-new-handler"><a href="#1-7-new-handler" class="headerlink" title="1.7 new handler"></a>1.7 new handler</h3><blockquote>
+<p>在malloc失败的时候会抛出一个异常并且调用你注册进去的new handler函数然后再调用一次malloc<br>在new handler函数中你需要进行补救措施，两种方法<br>①. 让更多的内存可用，释放一些内存等<br>②. 调用abort()或者exit()<br>注意: 调用c++库中的set_new_handler它的返回值是new_handler类型是因为如果已经有new handler被注册进去，你再注册进去，它会把之前注册进去的new handler返回出来，再注册你现在放进去的。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/new_handler.png" class title="category">
+
+<h2 id="第二讲-std-allocator"><a href="#第二讲-std-allocator" class="headerlink" title="第二讲 std::allocator"></a>第二讲 std::allocator</h2><h3 id="2-1-malloc"><a href="#2-1-malloc" class="headerlink" title="2.1 malloc"></a>2.1 malloc</h3><h4 id="2-1-1-VC6"><a href="#2-1-1-VC6" class="headerlink" title="2.1.1 VC6"></a>2.1.1 VC6</h4><img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6_malloc.png" class title="category">
+
+<h3 id="2-2-VC6标准分配器之实现"><a href="#2-2-VC6标准分配器之实现" class="headerlink" title="2.2 VC6标准分配器之实现"></a>2.2 VC6标准分配器之实现</h3><blockquote>
+<p>只是包装了一下operator new</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png" class title="category">
+
+<h3 id="2-3-BC5标注分配器之实现"><a href="#2-3-BC5标注分配器之实现" class="headerlink" title="2.3 BC5标注分配器之实现"></a>2.3 BC5标注分配器之实现</h3><blockquote>
+<p>只是包装了一下operator new</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/BC6%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png" class title="category">
+
+<h3 id="2-4-G2-9标准分配器之实现"><a href="#2-4-G2-9标准分配器之实现" class="headerlink" title="2.4 G2.9标准分配器之实现"></a>2.4 G2.9标准分配器之实现</h3><blockquote>
+<p>G2.9容器使用的分配器，不是std::allocator而是std::alloc</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0.png" class title="category">
+
+<h3 id="2-5-G2-9std-allocVSG4-9-pull-alloc"><a href="#2-5-G2-9std-allocVSG4-9-pull-alloc" class="headerlink" title="2.5 G2.9std_allocVSG4.9__pull_alloc"></a>2.5 G2.9std_allocVSG4.9__pull_alloc</h3><blockquote>
+<p>std::alloc依旧还可以用</p>
+</blockquote>
+<h3 id="2-6-G4-9pull-alloc用例"><a href="#2-6-G4-9pull-alloc用例" class="headerlink" title="2.6 G4.9pull alloc用例"></a>2.6 G4.9pull alloc用例</h3><blockquote>
+<p>使用__pull_alloc发现内存地址确实都相差8个字节不带cookie<br>使用std::allocator内存地址相差16个字节，带入了cookie，因为std::allocator根源其实是使用malloc</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G4.9pull_alloc%E7%94%A8%E4%BE%8B.png" class title="category">
+
+<h3 id="2-7-G2-9-std-alloc-运行模式"><a href="#2-7-G2-9-std-alloc-运行模式" class="headerlink" title="2.7 G2.9 std::alloc 运行模式"></a>2.7 G2.9 std::alloc 运行模式</h3><blockquote>
+<p>链表间每一个间隔是八个字节，如果请求的是8个字节那么就是第零块来处理，16字节就是第一块，以此类推，一共有16块，如果超出范围那么就用malloc申请(带cookie)，而不是使用std::alloc。<br>虽然块里面申请的是N字节(对象的大小)<em>20个(代码里面写的)，其实准确的说是申请N</em>20*2,只是前20个是拿来用，后面20个当备用。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F.png" class title="category">
+
+<ul>
+<li>embedded pointers(迁入式指针)<ul>
+<li>还未给出去的数据块的头四个字节会拿过来当标志位，衔接到单向链表上，如果被送出去，就交由处理方填写数据(会覆盖头四个字节)直到重新释放回来再在头四个字节上填写标志位，归入单向链表。</li>
+<li>如果申请的数据块大小小于4个字节就无法使用(但是工业级使用通常都大于4个字节)<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/embedded_pointers.png" class title="category"></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-8-G2-9-std-alloc-运行一瞥"><a href="#2-8-G2-9-std-alloc-运行一瞥" class="headerlink" title="2.8 G2.9 std::alloc 运行一瞥"></a>2.8 G2.9 std::alloc 运行一瞥</h3><ul>
+<li>pool_list是list中内存区域里面的内存块的迁入链。</li>
+</ul>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><blockquote>
+<p>这张图也可以为<strong>2.7 G2.9 std::alloc 运行模式</strong>里面做解释。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A51.png" class title="category">
+
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><blockquote>
+<p>从备用池里面取出，而不是马上申请(承接上面的图)。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A52.png" class title="category">
+
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><blockquote>
+<p>由于备用池里面无剩余内存，所以重新申请内存。<br>RoundUp追加量的计算，把累计申请量右移4字节(上一次是1280)。<br>注意:从申请的内存从切割出来给pool_list的内存块永远只会在1~20个时间(上一张图有注释)</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A53.png" class title="category">
+
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><blockquote>
+<p>从上一个操作中的备用池里面拿出内存放入pool_list(确保备用池内存够)。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A54.png" class title="category">
+
+<h4 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h4><blockquote>
+<p>上一次申请88个字节内存的时候，20个内存块放入pool_list，但是客户只要一个88字节，所以还剩下19个内存块还在pool_list中，所以这次连续申请三次88个字节，只要把19个内存块中交出三个内存块就行。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A55.png" class title="category">
+
+<h4 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h4><blockquote>
+<p>因为第四步中申请的备用内存池还有剩余240字节，而这次申请8个字节，又由于最多只能拿出20个内存块放入pool_list所以，备用池还剩下200-8*20 &#x3D; 80字节。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A56.png" class title="category">
+
+<h4 id="第七步"><a href="#第七步" class="headerlink" title="第七步"></a>第七步</h4><blockquote>
+<p>这一步也表现了如何处理内存碎片<br>list是std::alloc里面的那个表，不代表pool_list。<br>这一次申请104个字节，备用池连一个内存都申请不了，于是把剩余的80个字节放入list的第九块区域(list从0开始，每一个区域处理8个字节)。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A57.png" class title="category">
+
+<h4 id="第八步"><a href="#第八步" class="headerlink" title="第八步"></a>第八步</h4><blockquote>
+<p>其实和第二部一样，从备用池里面取出放入pool_list，并且区域一个给客户。</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A58.png" class title="category">
+
+<h4 id="第九步"><a href="#第九步" class="headerlink" title="第九步"></a>第九步</h4><blockquote>
+<p>这一次申请48个字节，168-48*3 &#x3D; 24，24字节作为备用池</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A59.png" class title="category">
+
+<h4 id="第十步-观察无法继续申请内存的后续操作"><a href="#第十步-观察无法继续申请内存的后续操作" class="headerlink" title="第十步 (观察无法继续申请内存的后续操作)"></a>第十步 (观察无法继续申请内存的后续操作)</h4><blockquote>
+<p>这一次申请72字节，但是备用池只有24个字节，所以把它挂在list第2块区域。<br>之后从list中比72大的那个区域中(第9块区域)的pool_list中的一个内存块取出一个72字节给客户，然后备用池只剩下80-72 &#x3D; 8个字节。<br>如果之后再申请72字节，那么就从第10块区域拿，然后备用池剩下88-72 &#x3D; 16个字节。之前剩下的8个字节应该放入list的第0个区域中了</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A510.png" class title="category">
+
+<h4 id="第十一步"><a href="#第十一步" class="headerlink" title="第十一步"></a>第十一步</h4><blockquote>
+<ol>
+<li>能否把空白的，没有给出去的内存块合并取来用上？(难度极高，后面的版本也基本没人做)</li>
+<li>可以不可以将失败的那次申请的内存大小折半再这般&lt;&#x3D;312便能够满足，因为只要申请比剩余312字节小就行。</li>
+</ol>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/G2.9_std_alloc%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A511.png" class title="category">
+
+<h3 id="2-9-G2-9-std-alloc-源码剖析"><a href="#2-9-G2-9-std-alloc-源码剖析" class="headerlink" title="2.9 G2.9 std::alloc 源码剖析"></a>2.9 G2.9 std::alloc 源码剖析</h3><blockquote>
+<p>最好结合视频分析。<br>alloc 里面的deallocate 里面并没有把申请的内存释放(allocate里面会refill申请内存)，而是继续留在自己的poll_list迁入链中(导致大量内存使用完之后内存占用很多，不释放)，这其实不算是一种内存泄漏。</p>
+</blockquote>
+<h3 id="2-10-G4-9-pool-allocator运行观察"><a href="#2-10-G4-9-pool-allocator运行观察" class="headerlink" title="2.10 G4.9 pool allocator运行观察"></a>2.10 G4.9 pool allocator运行观察</h3><blockquote>
+<p>通过重载全局的operator new&#x2F;delete来知道malloc了多少次(malloc会产生cookie)，来知道可以省下多少内存(比较pool allocator和容器自带的std::allocator区别)。<br>pool allocator通过特殊的管理方法可以省下很多内存，主要体现在cookies上。</p>
+</blockquote>
+<h2 id="第三讲-malloc-x2F-free"><a href="#第三讲-malloc-x2F-free" class="headerlink" title="第三讲 malloc&#x2F;free"></a>第三讲 malloc&#x2F;free</h2><h3 id="3-1VC6和VC10的malloc比较"><a href="#3-1VC6和VC10的malloc比较" class="headerlink" title="3.1VC6和VC10的malloc比较"></a>3.1VC6和VC10的malloc比较</h3><blockquote>
+<p>第八步是函数进入入口，之前是进入main之前的操作，之后是main出来之后的操作。<br>mainCRTStartup()函数里面会进行1~7操作。<br>函数中_heap_alloc_base会根据需要的大小进行两种操作(小区块和大区块操作)。<br>注意:VC6和VC10的代码有部分不同，尤其上一步中VC10不会根据大小进行两种操作。</p>
+</blockquote>
+<p>VC6</p>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%831.png" class title="category">
+
+<p>VC10</p>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%832.png" class title="category">
+
+<h4 id="3-1-1-SBH之始-heap-init-和-sbh-heap-init"><a href="#3-1-1-SBH之始-heap-init-和-sbh-heap-init" class="headerlink" title="3.1.1 SBH之始 - _heap_init()和_sbh_heap_init()"></a>3.1.1 SBH之始 - _heap_init()和_sbh_heap_init()</h4><blockquote>
+<p>_heap_init()<br>里面向windows系统申请一块区域</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>_sbh_heap_init()<br>从那个区域中分配16个HEADER</p>
+</blockquote>
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%833.png" class title="category">
+<img src="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/HEADER%E7%BB%93%E6%9E%84%E4%BD%93.png" class title="category">
+
+<h2 id="第三讲-other-allocators"><a href="#第三讲-other-allocators" class="headerlink" title="第三讲 other allocators"></a>第三讲 other allocators</h2><h2 id="第四讲-loki-allocator"><a href="#第四讲-loki-allocator" class="headerlink" title="第四讲 loki::allocator"></a>第四讲 loki::allocator</h2>
       
 
       <!-- 增加版权声明 -->
@@ -379,7 +581,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">C++内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%AE%B2-primitives"><span class="toc-number">1.1.</span> <span class="toc-text">第一讲 primitives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.1.1.</span> <span class="toc-text">new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Array-new"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Array new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-number">1.1.2.</span> <span class="toc-text">delete</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Array-delete"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Array delete</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2-malloc-x2F-new"><span class="toc-number">1.2.</span> <span class="toc-text">第二讲 malloc&#x2F;new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-std-allocator"><span class="toc-number">1.3.</span> <span class="toc-text">第三讲 std::allocator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-other-allocators"><span class="toc-number">1.4.</span> <span class="toc-text">第三讲 other allocators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2-loki-allocator"><span class="toc-number">1.5.</span> <span class="toc-text">第四讲 loki::allocator</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">C++内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%AE%B2-primitives"><span class="toc-number">1.1.</span> <span class="toc-text">第一讲 primitives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-new"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-Array-new"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1 Array new</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-placement-new"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.2 placement new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-delete"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 delete</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-Array-delete"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 Array delete</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%87%8D%E8%BD%BDnew-x2F-delete"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 重载new&#x2F;delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-per-class-allocator"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 per-class allocator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-static-allocator"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5 static allocator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-Macro-for-static-allocator"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6 Macro for static allocator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-new-handler"><span class="toc-number">1.1.7.</span> <span class="toc-text">1.7 new handler</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2-std-allocator"><span class="toc-number">1.2.</span> <span class="toc-text">第二讲 std::allocator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-malloc"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 malloc</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-VC6"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 VC6</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-VC6%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 VC6标准分配器之实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-BC5%E6%A0%87%E6%B3%A8%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 BC5标注分配器之实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-G2-9%E6%A0%87%E5%87%86%E5%88%86%E9%85%8D%E5%99%A8%E4%B9%8B%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 G2.9标准分配器之实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-G2-9std-allocVSG4-9-pull-alloc"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 G2.9std_allocVSG4.9__pull_alloc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-G4-9pull-alloc%E7%94%A8%E4%BE%8B"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 G4.9pull alloc用例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-G2-9-std-alloc-%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.7 G2.9 std::alloc 运行模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-G2-9-std-alloc-%E8%BF%90%E8%A1%8C%E4%B8%80%E7%9E%A5"><span class="toc-number">1.2.8.</span> <span class="toc-text">2.8 G2.9 std::alloc 运行一瞥</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-number">1.2.8.1.</span> <span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-number">1.2.8.2.</span> <span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-number">1.2.8.3.</span> <span class="toc-text">第三步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5"><span class="toc-number">1.2.8.4.</span> <span class="toc-text">第四步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5"><span class="toc-number">1.2.8.5.</span> <span class="toc-text">第五步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5"><span class="toc-number">1.2.8.6.</span> <span class="toc-text">第六步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5"><span class="toc-number">1.2.8.7.</span> <span class="toc-text">第七步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E6%AD%A5"><span class="toc-number">1.2.8.8.</span> <span class="toc-text">第八步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E6%AD%A5"><span class="toc-number">1.2.8.9.</span> <span class="toc-text">第九步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E6%AD%A5-%E8%A7%82%E5%AF%9F%E6%97%A0%E6%B3%95%E7%BB%A7%E7%BB%AD%E7%94%B3%E8%AF%B7%E5%86%85%E5%AD%98%E7%9A%84%E5%90%8E%E7%BB%AD%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.8.10.</span> <span class="toc-text">第十步 (观察无法继续申请内存的后续操作)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E6%AD%A5"><span class="toc-number">1.2.8.11.</span> <span class="toc-text">第十一步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-G2-9-std-alloc-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90"><span class="toc-number">1.2.9.</span> <span class="toc-text">2.9 G2.9 std::alloc 源码剖析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-G4-9-pool-allocator%E8%BF%90%E8%A1%8C%E8%A7%82%E5%AF%9F"><span class="toc-number">1.2.10.</span> <span class="toc-text">2.10 G4.9 pool allocator运行观察</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-malloc-x2F-free"><span class="toc-number">1.3.</span> <span class="toc-text">第三讲 malloc&#x2F;free</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1VC6%E5%92%8CVC10%E7%9A%84malloc%E6%AF%94%E8%BE%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1VC6和VC10的malloc比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-SBH%E4%B9%8B%E5%A7%8B-heap-init-%E5%92%8C-sbh-heap-init"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">3.1.1 SBH之始 - _heap_init()和_sbh_heap_init()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2-other-allocators"><span class="toc-number">1.4.</span> <span class="toc-text">第三讲 other allocators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2-loki-allocator"><span class="toc-number">1.5.</span> <span class="toc-text">第四讲 loki::allocator</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
