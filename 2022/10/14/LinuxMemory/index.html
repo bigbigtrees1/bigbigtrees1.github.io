@@ -6,15 +6,46 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: mysql | 闲时写</title>
+  <title>LinuxMemory | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="闲时写">
-<meta property="og:url" content="http://example.com/tags/mysql/index.html">
+  <meta name="description" content="linux内存管理(逐步更新)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxMemory">
+<meta property="og:url" content="http://example.com/2022/10/14/LinuxMemory/index.html">
 <meta property="og:site_name" content="闲时写">
+<meta property="og:description" content="linux内存管理(逐步更新)">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/struct_zone.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%E4%BD%93%E5%85%B3%E8%81%94.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/mem_map%E8%AE%A1%E7%AE%97.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F1.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F2.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F3.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%866.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%862.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%863.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%865.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%867.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8611.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/CMA1.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/CMA2.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/slab1.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/slab2.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/slab%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/Cache1.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/Cache2.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/Cache6.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/Cache7.png">
+<meta property="og:image" content="http://example.com/2022/10/14/LinuxMemory/Cache9.png">
+<meta property="article:published_time" content="2022-10-14T13:44:48.000Z">
+<meta property="article:modified_time" content="2022-10-18T13:41:02.746Z">
 <meta property="article:author" content="bigbigtree">
+<meta property="article:tag" content="Linux Memory">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/10/14/LinuxMemory/%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861.png">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
   
@@ -128,60 +159,530 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-LinuxMemory" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/17/mysql/" class="archive-article-date">
-  	<time datetime="2022-07-17T13:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/mysql/">mysql</a>
+    <h1 class="article-title" itemprop="name">
+      LinuxMemory
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2022/10/14/LinuxMemory/" class="archive-article-date">
+  	<time datetime="2022-10-14T13:44:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>linux内存管理<br>(逐步更新)</p>
+<span id="more"></span>
+
+<h1 id="linux内存管理"><a href="#linux内存管理" class="headerlink" title="linux内存管理"></a>linux内存管理</h1><h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>物理内存管理:zone、page、伙伴系统</li>
+<li>虚拟内存管理</li>
+<li>MMU、页表、TLB</li>
+<li>内存申请于释放接口</li>
+<li>映射机制底层实现</li>
+<li>预期收获:<ul>
+<li><ol>
+<li>物理内从、虚拟内存的划分</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>深入理解页表、地址转换、映射</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>学会使用内核提供的接口申请内存</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>构建一个完整的内存管理框架</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="物理内存管理"><a href="#物理内存管理" class="headerlink" title="物理内存管理"></a>物理内存管理</h2><ul>
+<li>页: struct page</li>
+<li>分区: struct zone</li>
+<li>内存节点: struct node(一般用于服务器)</li>
+</ul>
+<blockquote>
+<p>DMA需要自己有一块连续的专属内存，所以一般先分配大概16MB</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861.png" class title="category">
+
+<h3 id="物理页帧-struct-page"><a href="#物理页帧-struct-page" class="headerlink" title="物理页帧: struct page"></a>物理页帧: struct page</h3><ul>
+<li>定义头文件:include&#x2F;linux&#x2F;mm_types.h</li>
+<li>每个物理页帧(page frame)使用结构体page表示</li>
+<li>结构体struct page核心成员分析</li>
+<li>思考:<ul>
+<li>物理页帧与struct page之间的关系<ul>
+<li>一一对应的关键，知道page 就可以直到物理页帧的地址，物理页帧号</li>
+</ul>
+</li>
+<li>物理页帧号(page frame number)和物理地址之间的关系<ul>
+<li>比如4k 2的12次方是4k，那么pfn&#x3D;paddr&gt;&gt;12等于去掉了偏移量，那么就是这样互相转换</li>
+</ul>
+</li>
+<li>struct page存储在哪里<ul>
+<li>某个线性区域内</li>
+</ul>
+</li>
+<li>全局变量:mem_map指针</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存区域-struct-zone"><a href="#内存区域-struct-zone" class="headerlink" title="内存区域 struct zone"></a>内存区域 struct zone</h3><ul>
+<li>定义: include&#x2F;linux&#x2F;mmzone.h</li>
+<li>结构体: struct zone核心成员解读</li>
+<li>初始化: zone_sizes_init</li>
+</ul>
+<blockquote>
+<ul>
+<li>_watermark 表示目前内存使用率</li>
+<li>lowmem_reserve 表示当高端内存，低端内存不够的使用启动备用用</li>
+<li>zone_start_pfn 当前物理页起始帧号</li>
+<li>free_area 当前空闲的可用的物理页帧</li>
+</ul>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/struct_zone.png" class title="category">
+
+<h3 id="内存结点-node"><a href="#内存结点-node" class="headerlink" title="内存结点: node"></a>内存结点: node</h3><ul>
+<li>内存模型:UMA和NUMA<ul>
+<li>UMA:一致存储结构，物理内存是统一编制，内存可以随机访问，访问内存地址单元时间都是相同的</li>
+<li>NUMA:非一致性层次结构，时间无法保证相同，比如服务器中，CPU可以访问其他内存是通过总线</li>
+</ul>
+</li>
+<li>struct pglist_data： 表示node中的内存资源</li>
+<li>定义:include&#x2F;linux&#x2F;mmzone.h</li>
+<li>结构体: struct pglist_data 核心成员解析</li>
+<li>node_data数组:保存所有node的pglist_data结构<img src="/2022/10/14/LinuxMemory/%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84.png" class title="category">  
+<img src="/2022/10/14/LinuxMemory/%E6%A0%B8%E5%BF%83%E7%BB%93%E6%9E%84%E4%BD%93%E5%85%B3%E8%81%94.png" class title="category"></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>在初始化的时候每个物理页帧都给分配结构体，存放在内存中的某个区域，使用全局变量的mem_map指针获取存放page内存区域的起始地址</li>
+</ul>
+<img src="/2022/10/14/LinuxMemory/mem_map%E8%AE%A1%E7%AE%97.png" class title="category">
+
+<h2 id="伙伴系统"><a href="#伙伴系统" class="headerlink" title="伙伴系统"></a>伙伴系统</h2><ul>
+<li>物理内存由页分配器(page allocator)接管</li>
+<li>内存块的申请、释放过程</li>
+<li>伙伴算法、阶数</li>
+</ul>
+<blockquote>
+<p><strong>初始化</strong>:初始化的时候看视频说是直接申请pageblock(4M)，之后根据用户申请不停分裂下去到对应链表中</p>
+<p><strong>申请</strong>:如果申请8K那么就找8K那块链表上面是否存在，存在直接取出使用，不存在则去比他大的链表上找，然后取出把大的链表上的内存块分成两块，一块拿去使用，一块丢到符合这个大小的链表上。</p>
+<p><strong>释放</strong>:如果被释放回来，伙伴系统根据返回的大小插入合适的链表上。如果符合两点1.大小相同，2.物理地址相连，则进行合并，放入对应的链表上。这个合并操作会不停判断直到合并到条件不满足。</p>
+</blockquote>
+<ul>
+<li>在strcut zone 结构体中(上面)<ul>
+<li>struct free_area 指向各个不同大小的链表的表头</li>
+<li>lowmem_reserve 不会将当前分区所有的物理页都放到伙伴系统中，这个代表备份</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">free_area</span> &#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">list_head</span> free_list[MIGRATE_TYPES];</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> nr_free;</span><br><span class="line">&#125;</span><br><span class="line">- list_head为什么是结构体下面有说明</span><br><span class="line">- nr_free代表链表上内存块的个数</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>cat &#x2F;proc&#x2F;buddyinfo 看伙伴系统信息情况</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F1.png" class title="category">
+<blockquote>
+<ul>
+<li>NODE 0 : 计算机只有一个node，不是服务器，没那么多node</li>
+<li>zone XXX 代表分区</li>
+<li>后面的就代表2^0~2^10次方每个分区里面的内存块个数</li>
+<li>不同平台的分区是不一样的(注意！)，上面是linux</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>老版的伙伴系统对物理页是不进行分类的，统一管理<br>新版的伙伴系统会对一个分区内的物理页划分成不同的类型可移动的，不可移动的，可回收的(所以free_area结构体里面的list_head是一个结构体)</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F2.png" class title="category">
+<blockquote>
+<p>新版仔细命令 cat &#x2F;proc&#x2F;pagetypeinfo</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F3.png" class title="category">
+
+<hr>
+<ul>
+<li>核心结构体关联</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">page</span>&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="keyword">private</span>;</span><br><span class="line">  <span class="type">atomic_t</span> _mapcount;</span><br><span class="line">  <span class="type">atomic_t</span> _refcount;</span><br><span class="line">&#125;</span><br><span class="line">- <span class="keyword">private</span> 从哪个内存块链表里面拿出来的</span><br><span class="line">- _mapcount 如果是<span class="number">-1</span>(初始值)或者没有变化，说明还在伙伴系统链表上</span><br><span class="line">- _refcount 引用的计数</span><br></pre></td></tr></table></figure>
+
+<h3 id="伙伴系统的初始化"><a href="#伙伴系统的初始化" class="headerlink" title="伙伴系统的初始化"></a>伙伴系统的初始化</h3><ul>
+<li>早期的内存管理<ul>
+<li>内核如何获取内存的地址、大小</li>
+<li>全局变量:struct memblock.memory数组</li>
+<li>Reserve的物理内存:memblock.reserved数组<ul>
+<li>内核镜像(.init段除外)、dtb、U-boot、页表</li>
+<li>GPU、camera、音视频编解码<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%866.png" class title="category">
+<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861.png" class title="category"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>memblock接口</p>
+<ul>
+<li>memory 代表使用的</li>
+<li>reserved 是预留的,上面有列举给谁用的</li>
+</ul>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%862.png" class title="category">
+
+<h4 id="步骤1"><a href="#步骤1" class="headerlink" title="步骤1"></a>步骤1</h4><blockquote>
+<p>扫描设备树 dtb文件<br><strong>early_init_dt_scan_memory</strong>初始化memory<br><strong>early_init_fdt_scan_reserved_mem</strong>初始化reserved</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%863.png" class title="category">
+
+<ul>
+<li><p><strong>early_init_dt_scan_memory</strong></p>
+<ul>
+<li>获取物理起始地址和大小，然后调用early_init_dt_add_memory_arch，再调用memblock_add，再调用memblokc_add_range把内存块的大小和起始地址放入全局的memblock_memory_init_regions里面</li>
+</ul>
+</li>
+<li><p><strong>early_init_fdt_scan_reserved_mem</strong></p>
+</li>
+<li><p>经过上述步骤，我们已经把物理内存区域中可用和保留的都放入两个全局变量中了memblock_memory_init_regions，memblock_reserved_init_regions<br>(包括地址和大小)， 接下来membolck的信息会通过伙伴系统的接口，将所有空闲区域释放到伙伴系统中，保留的区域设置对应属性</p>
+</li>
+</ul>
+<h4 id="步骤2"><a href="#步骤2" class="headerlink" title="步骤2"></a>步骤2</h4><blockquote>
+<p>通过mm_init-&gt;mem_init-&gt;memblock_free_all将可用的内存区域释放给伙伴系统<br>下面两个宏是遍历memory和reserved区域来获取里面每个内存块的起始地址和结束地址，然后根据可用不可用释放到伙伴系统中</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%865.png" class title="category">
+
+<h3 id="init段的内存释放-释放到伙伴系统中"><a href="#init段的内存释放-释放到伙伴系统中" class="headerlink" title=".init段的内存释放(释放到伙伴系统中)"></a>.init段的内存释放(释放到伙伴系统中)</h3><img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%867.png" class title="category">
+
+<ul>
+<li>就初始化一次，后续用不到了，所以使用之后就可以把内存释放掉了(释放.init.text section占据的内存释放到伙伴系统)<ul>
+<li>arch_call_rest_init-&gt;rest_init-&gt;kernel_init-&gt;<strong>free_initmem</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="CMA内存的释放"><a href="#CMA内存的释放" class="headerlink" title="CMA内存的释放"></a>CMA内存的释放</h3><blockquote>
+<p>core_initcall(cam_init_reserved_areas)-&gt;<strong>cam_init_reserved_areas</strong>(core_initcall是个宏)</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/%E6%97%A9%E6%9C%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8611.png" class title="category">
+
+<h2 id="CMA"><a href="#CMA" class="headerlink" title="CMA"></a>CMA</h2><ul>
+<li>申请大块内存，用于多媒体等模块申请大块物理内从使用，如果没有模块使用，则会通过伙伴系统接口释放到伙伴系统中给其他程序使用。如果多媒体等模块需要使用则回收回来，如果分出去的内存已经被使用，则只能迁移内存块中的数据给其他的分区，然后就恢复连续的区域给程序使用。</li>
+</ul>
+<blockquote>
+<p>CMA 结构体</p>
+<ul>
+<li>base_pfn: cma区域的起始地址</li>
+<li>count: 页数，物理页的个数</li>
+<li>bitmap: 当前CMA中物理页的使用情况，使用位图表示</li>
+<li>order_per_bit: 说明一个CMA内存里面一个格子代表多少个物理页</li>
+</ul>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/CMA1.png" class title="category">
+
+<ul>
+<li><p>初始化</p>
+<ul>
+<li>内核配置或者设备树dts文件</li>
+<li>初始化以pageblock(4M)为单位</li>
+</ul>
+</li>
+<li><p>分配到伙伴系统中</p>
+<ul>
+<li>释放到伙伴系统中有一个专门的类型</li>
+<li>MIGRATE_CMA</li>
+<li>只有当用户申请的内存是可移动的才会到专门的MIGRATE_CMA里面去申请<img src="/2022/10/14/LinuxMemory/CMA2.png" class title="category"></li>
+</ul>
+</li>
+<li><p>CMA申请时(多媒体使用时)</p>
+<ul>
+<li>MIGRATE_CMA标志变成MIGRATE_ISOLATE伙伴系统就不会到这里申请，因为这些内存已经要被使用了，然后去CMA放到伙伴系统的pageblock里面看哪些被使用了，把里面的数据迁移到其他区域(NORMAL或者HIGHMEM中)，然后就恢复连续的区域。</li>
+</ul>
+</li>
+</ul>
+<h2 id="slab"><a href="#slab" class="headerlink" title="slab"></a>slab</h2><blockquote>
+<ul>
+<li>对伙伴系统的改进和补充</li>
+<li>如果申请32字节小块内存，也会给你1页4KB，太浪费</li>
+</ul>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/slab1.png" class title="category">
+
+<hr>
+<blockquote>
+<ul>
+<li>kmem_cache是每个相同大小内存块的管理<ul>
+<li>里面有<strong>struct kmem_cache_node *node[n]<strong>代表几个node，只有服务器有多个node(node可知代表一个系统的内存块),结构体里面还有</strong>struct list_head partial</strong>代表slab的链接链表</li>
+<li><strong>struct kmem_cache_cpu __percpu *cpu_slab</strong>如果是多核会各自维护本地的slab缓存</li>
+</ul>
+</li>
+<li>struct kmem_cache_cpu __percpu *cpu_slab<ul>
+<li>page代表那个物理页</li>
+<li>**freelist物理页中空闲的内存块，例如，32字节的内存块里面申请了很多个32字节小内存块。单链表链接，在内存块里面占用一部分空间，保存地址，不需要定义新的数据结构。</li>
+<li>如果本地缓存用完了，page用完了，把page放到下面partial里面，然后通过伙伴系统申请一个内存块，然后page重新指向(free，full， partial)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/slab2.png" class title="category">
+
+<h3 id="slab编程接口"><a href="#slab编程接口" class="headerlink" title="slab编程接口"></a>slab编程接口</h3><img src="/2022/10/14/LinuxMemory/slab%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3.png" class title="category">
+
+<h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><ul>
+<li>出现的原因:<ul>
+<li>CPU速度比主存块很多倍，CPU瓶颈在读取数据</li>
+<li>SRAM比DRAM速度块，但是太贵</li>
+<li>少量SRAM做Cache就能大幅度提升性能</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>CPU的一些结构<br>SMP</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/Cache1.png" class title="category">
+<blockquote>
+<p>NUMA</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/Cache2.png" class title="category">
+
+<h3 id="写策略"><a href="#写策略" class="headerlink" title="写策略"></a>写策略</h3><ul>
+<li><ol>
+<li>write through：CPU向cache写入数据时，同时向memory(后端存储)也写一份，使cache<br>和memory的数据保持一致。优点是简单，缺点是每次都要访问memory， 速度比较慢。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>write back: cpu更新cache时，只是把更新的cache区标记一下，并不同步更新memory<br>(后端存储)。只是在cache区要被新进入的数据取代时，才更新memory(后端存储)。这样做的原因是考虑到很多时候cache存入的是中间结果，没有必要同步更新memory(后端存储)。优点是CPU执行的效率提高，缺点是实现起来技术比较复杂</li>
+</ol>
+</li>
+</ul>
+
+
+<h3 id="Cache-line"><a href="#Cache-line" class="headerlink" title="Cache line"></a>Cache line</h3><ul>
+<li>Cache Line可以简单的理解为CPU Cache中的最小缓存单位，内存和高速缓存之间或高速缓存之间的数据移动不是以单个字节或甚至word完成的。<br>相反，移动的最小数据单位称为缓存行，有时称为缓存块。</li>
+<li>目前主流的CPU Cache的Cache Line大小都是64Bytes。假设我们有一个512字节的一级缓存，那么按照64B的缓存单位大小来算，这个一级缓存所能存放的缓存个数就是512&#x2F;64 &#x3D; 8个。</li>
+</ul>
+<h3 id="Cache-miss"><a href="#Cache-miss" class="headerlink" title="Cache miss"></a>Cache miss</h3><ul>
+<li>冲突失效(conflict miss):在直接相联或组相联的cache中，不同的cache块由于index相同相互替换，引起的失效叫做冲突失效<ul>
+<li>比如两个内存地址A和B都指向同一块缓存，先处理A，则A把内存加载到缓存里，访问A完毕之后，访问B，因为指向同一块缓存，那么就把A数据丢出去，现在就出现Cache Miss 因为把A数据丢出去了，其实A和B指向同一块内存</li>
+</ul>
+</li>
+<li>容量失效(capacity miss):有限的cache容量导致cache放不下而替换出cache块，被替换出去的cache块再被访问，引起的失效叫做容量失效。</li>
+<li>强制性失效&#x2F;冷失效(compulsory miss&#x2F;cold miss):CPU第一次访问相应cache块，cache中肯定没有该cache块，引起的失效叫做强制性失效。这是不可避免的。<ul>
+<li>比如多个CPU访问同一块内存</li>
+</ul>
+</li>
+</ul>
+<h3 id="Direct-Mapped-Cache-直接映射缓存"><a href="#Direct-Mapped-Cache-直接映射缓存" class="headerlink" title="Direct Mapped Cache(直接映射缓存)"></a>Direct Mapped Cache(直接映射缓存)</h3><blockquote>
+<ul>
+<li>根据byte offset来判断来判断你访问数据中的哪一个字节，因为这个data 数据是4字节，所以用3位可以表达<ul>
+<li>根据<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">https://zhuanlan.zhihu.com/p/102293437</a>猜测的<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhongyangtony/article/details/80587557">https://blog.csdn.net/zhongyangtony/article/details/80587557</a></li>
+</ul>
+</li>
+<li>因为是1024个，所以用2-11位来代替index，来访问哪一行</li>
+<li>12-31个代表tag，表示是否是正确访问的</li>
+</ul>
+</blockquote>
+
+
+<h3 id="Two-way-Set-Associative-Cache-两路组相连缓存"><a href="#Two-way-Set-Associative-Cache-两路组相连缓存" class="headerlink" title="Two-way Set Associative Cache(两路组相连缓存)"></a>Two-way Set Associative Cache(两路组相连缓存)</h3><blockquote>
+<p>因为每个Cache256字节，因为是十六进制表示，所以后两位其实代表就是256，然后按照256字节一组，分为16组，所以一直到0xE<br>0-7位代表访问哪一个字节<br>7-11代表第几行<br>剩下的就是tag</p>
+</blockquote>
+<img src="/2022/10/14/LinuxMemory/Cache6.png" class title="category">
+
+<h3 id="N-way-Set-x2F-Fully-Associative-Cache-全相连缓存"><a href="#N-way-Set-x2F-Fully-Associative-Cache-全相连缓存" class="headerlink" title="N-way Set&#x2F;Fully Associative Cache(全相连缓存)"></a>N-way Set&#x2F;Fully Associative Cache(全相连缓存)</h3><ul>
+<li>只有offset访问第几个字节，然后tag确认是否正确，没有index，因为都在一个组内。</li>
+</ul>
+<h3 id="False-Sharing"><a href="#False-Sharing" class="headerlink" title="False Sharing"></a>False Sharing</h3><ul>
+<li>类似冲突失效(conflict miss)，比如两个线程的数据都在同一个cache line，比如下面图里面的valueA，valueB，不停互相抢占</li>
+<li>如何大致解决，比如你cache line 是64个字节，那么就在这两个线程操作的数据中添加8个long长的变量(手动padding不一定有效)<img src="/2022/10/14/LinuxMemory/Cache7.png" class title="category">
+<img src="/2022/10/14/LinuxMemory/Cache9.png" class title="category"></li>
+</ul>
+
+      
+
+      <!-- 增加版权声明 -->
+      
+      
+        <div class="declare">
+          <strong>本文作者：</strong>
           
+            bigbigtree
+          
+          <br>
+          <strong>本文链接：</strong>
+          <a rel="license" href="http://example.com/2022/10/14/LinuxMemory/">http://example.com/2022/10/14/LinuxMemory/</a>
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+            <br>
+            <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+          
+        </div>
+      
+      <!-- 增加版权声明结束 -->
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Linux Memory</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/10/14/LinuxMemory/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/07/27/c-11/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c++11</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">linux内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">物理内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E9%A1%B5%E5%B8%A7-struct-page"><span class="toc-number">1.2.1.</span> <span class="toc-text">物理页帧: struct page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F-struct-zone"><span class="toc-number">1.2.2.</span> <span class="toc-text">内存区域 struct zone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%BB%93%E7%82%B9-node"><span class="toc-number">1.2.3.</span> <span class="toc-text">内存结点: node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text">伙伴系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.1.</span> <span class="toc-text">伙伴系统的初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">步骤1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">步骤2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#init%E6%AE%B5%E7%9A%84%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE-%E9%87%8A%E6%94%BE%E5%88%B0%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F%E4%B8%AD"><span class="toc-number">1.3.2.</span> <span class="toc-text">.init段的内存释放(释放到伙伴系统中)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMA%E5%86%85%E5%AD%98%E7%9A%84%E9%87%8A%E6%94%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">CMA内存的释放</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMA"><span class="toc-number">1.4.</span> <span class="toc-text">CMA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slab"><span class="toc-number">1.5.</span> <span class="toc-text">slab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#slab%E7%BC%96%E7%A8%8B%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.5.1.</span> <span class="toc-text">slab编程接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache"><span class="toc-number">1.6.</span> <span class="toc-text">Cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E7%AD%96%E7%95%A5"><span class="toc-number">1.6.1.</span> <span class="toc-text">写策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-line"><span class="toc-number">1.6.2.</span> <span class="toc-text">Cache line</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-miss"><span class="toc-number">1.6.3.</span> <span class="toc-text">Cache miss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Mapped-Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98"><span class="toc-number">1.6.4.</span> <span class="toc-text">Direct Mapped Cache(直接映射缓存)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-way-Set-Associative-Cache-%E4%B8%A4%E8%B7%AF%E7%BB%84%E7%9B%B8%E8%BF%9E%E7%BC%93%E5%AD%98"><span class="toc-number">1.6.5.</span> <span class="toc-text">Two-way Set Associative Cache(两路组相连缓存)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-x2F-Fully-Associative-Cache-%E5%85%A8%E7%9B%B8%E8%BF%9E%E7%BC%93%E5%AD%98"><span class="toc-number">1.6.6.</span> <span class="toc-text">N-way Set&#x2F;Fully Associative Cache(全相连缓存)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#False-Sharing"><span class="toc-number">1.6.7.</span> <span class="toc-text">False Sharing</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -204,9 +705,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
