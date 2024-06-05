@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>闲时写</title>
+  <title>程序的自我修养 | 闲时写</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="闲时写">
-<meta property="og:url" content="http://example.com/page/2/index.html">
+  <meta name="description" content="程序的自我修养">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序的自我修养">
+<meta property="og:url" content="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/index.html">
 <meta property="og:site_name" content="闲时写">
+<meta property="og:description" content="程序的自我修养">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
+<meta property="article:published_time" content="2024-06-04T08:39:26.000Z">
+<meta property="article:modified_time" content="2024-06-05T06:48:08.318Z">
 <meta property="article:author" content="bigbigtree">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
   
     <link rel="alternative" href="/atom.xml" title="闲时写" type="application/atom+xml">
   
@@ -128,70 +134,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-C-内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-程序的自我修养" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">C++内存管理</a>
+    <h1 class="article-title" itemprop="name">
+      程序的自我修养
     </h1>
   
 
         
-        <a href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-07-25T12:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
+        <a href="/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" class="archive-article-date">
+  	<time datetime="2024-06-04T08:39:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++内存管理笔记，结合侯捷老师视频，不一定记得很多<br>(逐步更新)</p>
-        
-          <a class="article-more-a" href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#more">more >></a>
-        
+        <p>程序的自我修养</p>
+<span id="more"></span>
+
+<h1 id="1-温故而知新"><a href="#1-温故而知新" class="headerlink" title="1.温故而知新"></a>1.温故而知新</h1><ul>
+<li>讲一些北京</li>
+</ul>
+<h2 id="1-1从Hello-World开始"><a href="#1-1从Hello-World开始" class="headerlink" title="1.1从Hello World开始"></a>1.1从Hello World开始</h2><ul>
+<li>铺垫一下后续可能会讲述到的最基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制。</li>
+</ul>
+<h2 id="1-2万变不离其宗"><a href="#1-2万变不离其宗" class="headerlink" title="1.2万变不离其宗"></a>1.2万变不离其宗</h2><ul>
+<li>计算机硬件<ul>
+<li>北桥运行速度快，南桥运行速度慢。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3站得高、望得远"><a href="#1-3站得高、望得远" class="headerlink" title="1.3站得高、望得远"></a>1.3站得高、望得远</h2><ul>
+<li>系统软件可以分成两块，一块是平台性的，比如操作系统内核、驱动程序、运行库和数以千计的系统工具；另外一块是用于程序开发的，比如编译器、汇编器、链接器等开发工具和开发</li>
+</ul>
+<h2 id="1-4操作系统做什么"><a href="#1-4操作系统做什么" class="headerlink" title="1.4操作系统做什么"></a>1.4操作系统做什么</h2><ul>
+<li>操作系统的一个功能是提供抽象的接口，另外一个主要功能是管理硬件资源。</li>
+</ul>
+<h2 id="1-5内存不够怎么办"><a href="#1-5内存不够怎么办" class="headerlink" title="1.5内存不够怎么办"></a>1.5内存不够怎么办</h2><ul>
+<li>讲述了内存如何慢慢发展到虚拟内存映射物理内从然后还有分页。</li>
+</ul>
+<h2 id="1-6众人拾柴火焰高"><a href="#1-6众人拾柴火焰高" class="headerlink" title="1.6众人拾柴火焰高"></a>1.6众人拾柴火焰高</h2><h3 id="1-什么是线程"><a href="#1-什么是线程" class="headerlink" title="1.什么是线程"></a>1.什么是线程</h3><ul>
+<li>线程（Thread），有时被称为轻量级进程（Lightweight Process,LWP），是程序执行流的最小单元。一个标准的线程由线程ID、当前指令指针（PC）、寄存器集合和堆栈组成。通常意义上，一个进程由一个到多个线程组成，各个线程之间共享程序的内存空间（包括代码段、数据段、堆等）及一些进程级的资源（如打开文件和信号）。</li>
+</ul>
+<h4 id="进程调度与优先级"><a href="#进程调度与优先级" class="headerlink" title="进程调度与优先级"></a>进程调度与优先级</h4><ul>
+<li><p>不论是在多处理器的计算机上还是在单处理器的计算机上，线程总是“并发”执行的。当线程数量小于等于处理器数量时（并且操作系统支持多处理器），线程的并发是真正的并发，不同的线程运行在不同的处理器上，彼此之间互不相干。但对于线程数量大于处理器数量的情况，线程的并发会受到一些阻碍，因为此时至少有一个处理器会运行多个线程。）。在线程调度中，线程通常拥有至少三种状态，分别是:</p>
+<ul>
+<li>运行（Running）：此时线程正在执行</li>
+<li>就绪（Ready）：此时线程可以立刻运行，但CPU已经被占用。</li>
+<li>等待（Waiting）：此时线程正在等待某一事件（通常是I&#x2F;O或同步）发生，无法执行。</li>
+<li><img src="/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png" class title="category"></li>
+</ul>
+</li>
+<li><p>现在主流的调度方式尽管各不相同，但都带有优先级调度（Priority Schedule）和轮转法（Round Robin）的痕迹。</p>
+<ul>
+<li>轮转法:所谓轮转法，即是之前提到的让各个线程轮流执行一小段时间的方法。这决定了线程之间交错执行的特点。</li>
+<li>优先级调度:而优先级调度则决定了线程按照什么顺序轮流执行。在具有优先级调度的系统中，线程都拥有各自的线程优先级(Thread Priori).）。具有高优先级的线程会更早地执行，而低优先级的线程常常要等待到系统中已经没有高优先级的可执行的线程存在时才能够执行。</li>
+<li>而把很少等待的线程称为<code>CPU密集型线程</code>.</li>
+<li>频繁等待的线程称之为<code>IO密集型线程</code>(IO BoundThrea)。</li>
+</ul>
+</li>
+</ul>
+
       
 
       <!-- 增加版权声明 -->
       
       
-        <div class="declare" hidden="hidden"></div>
+        <div class="declare">
+          <strong>本文作者：</strong>
+          
+            bigbigtree
+          
+          <br>
+          <strong>本文链接：</strong>
+          <a rel="license" href="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/</a>
+          <br>
+          <strong>版权声明：</strong>
+          本作品采用
+          <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          进行许可。转载请注明出处！
+          
+            <br>
+            <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+          
+        </div>
       
       <!-- 增加版权声明结束 -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/25/C-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">展开全文 >></a>
-        </p>
-      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/06/03/python%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -206,349 +338,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大小端" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/">大小端</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/" class="archive-article-date">
-  	<time datetime="2022-07-24T12:32:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>毕业时看到通过union来判断大小端，一直有时候理解出差，现在用其他方法</p>
-        
-          <a class="article-more-a" href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/#more">more >></a>
-        
-      
-
-      <!-- 增加版权声明 -->
-      
-      
-        <div class="declare" hidden="hidden"></div>
-      
-      <!-- 增加版权声明结束 -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/24/%E5%A4%A7%E5%B0%8F%E7%AB%AF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0"><span class="toc-number">1.</span> <span class="toc-text">1.温故而知新</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E4%BB%8EHello-World%E5%BC%80%E5%A7%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1从Hello World开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E4%B8%87%E5%8F%98%E4%B8%8D%E7%A6%BB%E5%85%B6%E5%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">1.2万变不离其宗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E7%AB%99%E5%BE%97%E9%AB%98%E3%80%81%E6%9C%9B%E5%BE%97%E8%BF%9C"><span class="toc-number">1.3.</span> <span class="toc-text">1.3站得高、望得远</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">1.4.</span> <span class="toc-text">1.4操作系统做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.5.</span> <span class="toc-text">1.5内存不够怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6%E4%BC%97%E4%BA%BA%E6%8B%BE%E6%9F%B4%E7%81%AB%E7%84%B0%E9%AB%98"><span class="toc-number">1.6.</span> <span class="toc-text">1.6众人拾柴火焰高</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.什么是线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">进程调度与优先级</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-虚函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/">虚函数</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2022-07-17T13:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>闲时写的一些理解，后续会进行修改和添加</p>
-        
-          <a class="article-more-a" href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/#more">more >></a>
-        
-      
-
-      <!-- 增加版权声明 -->
-      
-      
-        <div class="declare" hidden="hidden"></div>
-      
-      <!-- 增加版权声明结束 -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/17/%E8%99%9A%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/mysql/">mysql</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/17/mysql/" class="archive-article-date">
-  	<time datetime="2022-07-17T13:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MySQL的入门笔记(目录分类有点问题，markdown的部分语言比如$–$不兼容，后期修改)<br>(图片加载慢)</p>
-        
-          <a class="article-more-a" href="/2022/07/17/mysql/#more">more >></a>
-        
-      
-
-      <!-- 增加版权声明 -->
-      
-      
-        <div class="declare" hidden="hidden"></div>
-      
-      <!-- 增加版权声明结束 -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/17/mysql/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-design" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/design/">design</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/17/design/" class="archive-article-date">
-  	<time datetime="2022-07-17T08:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>c++设计模式介绍<br>(图片加载慢)</p>
-        
-          <a class="article-more-a" href="/2022/07/17/design/#more">more >></a>
-        
-      
-
-      <!-- 增加版权声明 -->
-      
-      
-        <div class="declare" hidden="hidden"></div>
-      
-      <!-- 增加版权声明结束 -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/17/design/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -571,8 +386,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
