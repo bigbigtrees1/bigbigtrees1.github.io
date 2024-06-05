@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
 <meta property="article:published_time" content="2024-06-04T08:39:26.000Z">
-<meta property="article:modified_time" content="2024-06-05T06:48:08.318Z">
+<meta property="article:modified_time" content="2024-06-05T07:23:59.344Z">
 <meta property="article:author" content="bigbigtree">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2024/06/04/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
@@ -194,12 +194,55 @@
 <ul>
 <li>轮转法:所谓轮转法，即是之前提到的让各个线程轮流执行一小段时间的方法。这决定了线程之间交错执行的特点。</li>
 <li>优先级调度:而优先级调度则决定了线程按照什么顺序轮流执行。在具有优先级调度的系统中，线程都拥有各自的线程优先级(Thread Priori).）。具有高优先级的线程会更早地执行，而低优先级的线程常常要等待到系统中已经没有高优先级的可执行的线程存在时才能够执行。</li>
-<li>而把很少等待的线程称为<code>CPU密集型线程</code>.</li>
+<li>而把很少等待的线程称为<code>CPU密集型线程</code>。</li>
 <li>频繁等待的线程称之为<code>IO密集型线程</code>(IO BoundThrea)。</li>
 </ul>
 </li>
+<li><p>优先级调度的环境下，线程的优先级改变一般有三种方式。</p>
+<ul>
+<li>用户指定优先级。</li>
+<li>根据进入等待状态的频繁程度提升或降低优先级。</li>
+<li>长时间得不到执行而被提升优先级。</li>
 </ul>
-
+</li>
+</ul>
+<h4 id="可抢占线程和不可抢占线程"><a href="#可抢占线程和不可抢占线程" class="headerlink" title="可抢占线程和不可抢占线程"></a>可抢占线程和不可抢占线程</h4><ul>
+<li>线程在用尽时间片之后会被强制剥夺继续执行的权利，而进入就绪状态，这个过程叫做抢占（Preemption），即之后执行的别的线程抢占了当前线程。线程主动放弃有两种情况<ul>
+<li>当线程试图等待某事件时（I&#x2F;O等）。</li>
+<li>线程主动放弃时间片。</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><ul>
+<li>多线程程序处于一个多变的环境当中，可访问的全局变量和堆数据随时都可能被其他的线程改变。因此多线程程序在并发时数据的一致性变得非常重要。</li>
+</ul>
+<h4 id="同步与锁"><a href="#同步与锁" class="headerlink" title="同步与锁"></a>同步与锁</h4><ul>
+<li>为了避免多个线程同时读写同一个数据而产生不可预料的后果，我们需要将各个线程对同一个数据的访问同步（Synchronization）。所谓同步，既是指在一个线程访问数据未结束的时候，其他线程不得对同一个数据进行访问。如此，对数据的访问被原子化了。</li>
+<li>同步的最常见方法是使用锁（Lock）。锁是一种非强制机制，每一个线程在访问数据或资源之前首先试图获取（Acquire）锁，并在访问结束之后释放（Release）锁。在锁已经被占用的时候试图获取锁时，线程会等待，直到锁重新可用。</li>
+<li>二元信号量（Binary Semaphore）是最简单的一种锁，它只有两种状态：占用与非占用。它适合只能被唯一一个线程独占访问的资源。当二元信号量处于非占用状态时，第一个试图获取该二元信号量的线程会获得该锁，并将二元信号量置为占用状态，此后其他的所有试图获取该二元信号量的线程将会等待，直到该锁被释放。</li>
+<li>互斥量（Mutex）和二元信号量很类似，资源仅同时允许一个线程访问，但和信号量不同的是，信号量在整个系统可以被任意线程获取并释放，也就是说，同一个信号量可以被系统中的一个线程获取之后由另一个线程释放。而互斥量则要求哪个线程获取了互斥量，哪个线程就要负责释放这个锁，其他线程越俎代庖去释放互斥量是无效的。</li>
+<li>临界区（Critical Section）是比互斥量更加严格的同步手段。在术语中，把临界区的锁的获取称为进入临界区，而把锁的释放称为离开临界区。临界区和互斥量与信号量的区别在于，互斥量和信号量在系统的任何进程里都是可见的，也就是说，一个进程创建了一个互斥量或信号量，另一个进程试图去获取该锁是合法的。然而，临界区的作用范围仅限于本进程，其他的进程无法获取该锁。除此之外，临界区具有和互斥量相同的性质。</li>
+<li>读写锁（Read-Write Lock）致力于一种更加特定的场合的同步。对于一段数据，多个线程同时读取总是没有问题的，但假设操作都不是原子型，只要有任何一个线程试图对这个数据进行修改，就必须使用同步手段来避免出错。如果我们使用上述信号量、互斥量或临界区中的任何一种来进行同步，尽管可以保证程序正确，但对于读取频繁，而仅仅偶尔写入的情况，会显得非常低效。读写锁可以避免这个问题。对于同一个锁，读写锁有两种获取方式，共享的（Shared）或独占的（Exclusive）。当锁处于自由的状态时，试图以任何一种方式获取锁都能成功，并将锁置于对应的状态。如果锁处于共享状态，其他线程以共享的方式获取锁仍然会成功，此时这个锁分配给了多个线程。然而，如果其他线程试图以独占的方式获取已经处于共享状态的锁，那么它将必须等待锁被所有的线程释放。相应地，处于独占状态的锁将阻止任何其他线程获取该锁，不论它们试图以哪种方式获取。</li>
+<li>条件变量（Condition Variable）作为一种同步手段，作用类似于一个栅栏。对于条件变量，线程可以有两种操作，首先线程可以等待条件变量，一个条件变量可以被多个线程等待。其次，线程可以唤醒条件变量，此时某个或所有等待此条件变量的线程都会被唤醒并继续支持。也就是说，使用条件变量可以让许多线程一起等待某个事件的发生，当事件发生时（条件变量被唤醒），所有的线程可以一起恢复执行。</li>
+</ul>
+<h3 id="多线程内部情况"><a href="#多线程内部情况" class="headerlink" title="多线程内部情况"></a>多线程内部情况</h3><h4 id="三种线程模型"><a href="#三种线程模型" class="headerlink" title="三种线程模型"></a>三种线程模型</h4><ul>
+<li>一对一模型<ul>
+<li>对于直接支持线程的系统，一对一模型始终是最为简单的模型。对一对一模型来说，一个用户使用的线程就唯一对应一个内核使用的线程（但反过来不一定，一个内核里的线程在用户态不一定有对应的线程存在）。</li>
+</ul>
+</li>
+<li>多对一模型<ul>
+<li>多对一模型将多个用户线程映射到一个内核线程上，线程之间的切换由用户态的代码来进行，因此相对于一对一模型，多对一模型的线程切换要快速许多。</li>
+</ul>
+</li>
+<li>多对多模型<ul>
+<li>多对多模型结合了多对一模型和一对一模型的特点，将多个用户线程映射到少数但不止一个内核线程上。</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>我们对整个计算机的软硬件基本结构进行了回顾，包括CPU与外围部件的连接方式、SMP与多核、软硬件层次体系结构、如何充分利用CPU及与系统软件十分相关的设备驱动、操作系统、虚拟空间、物理空间、页映射和线程的基础概念。虽然这些概念都是大家所了解的，但是我们认为还是有必要回顾一下，它们跟本书后面章节介绍的内容息息相关。正所谓温故而知新，这就是本章的目的。</li>
+</ul>
+<h1 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h1><h2 id="2-1被隐藏了的过程"><a href="#2-1被隐藏了的过程" class="headerlink" title="2.1被隐藏了的过程"></a>2.1被隐藏了的过程</h2>
       
 
       <!-- 增加版权声明 -->
@@ -345,7 +388,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0"><span class="toc-number">1.</span> <span class="toc-text">1.温故而知新</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E4%BB%8EHello-World%E5%BC%80%E5%A7%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1从Hello World开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E4%B8%87%E5%8F%98%E4%B8%8D%E7%A6%BB%E5%85%B6%E5%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">1.2万变不离其宗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E7%AB%99%E5%BE%97%E9%AB%98%E3%80%81%E6%9C%9B%E5%BE%97%E8%BF%9C"><span class="toc-number">1.3.</span> <span class="toc-text">1.3站得高、望得远</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">1.4.</span> <span class="toc-text">1.4操作系统做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.5.</span> <span class="toc-text">1.5内存不够怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6%E4%BC%97%E4%BA%BA%E6%8B%BE%E6%9F%B4%E7%81%AB%E7%84%B0%E9%AB%98"><span class="toc-number">1.6.</span> <span class="toc-text">1.6众人拾柴火焰高</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.什么是线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">进程调度与优先级</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0"><span class="toc-number">1.</span> <span class="toc-text">1.温故而知新</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E4%BB%8EHello-World%E5%BC%80%E5%A7%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1从Hello World开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E4%B8%87%E5%8F%98%E4%B8%8D%E7%A6%BB%E5%85%B6%E5%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">1.2万变不离其宗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E7%AB%99%E5%BE%97%E9%AB%98%E3%80%81%E6%9C%9B%E5%BE%97%E8%BF%9C"><span class="toc-number">1.3.</span> <span class="toc-text">1.3站得高、望得远</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">1.4.</span> <span class="toc-text">1.4操作系统做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.5.</span> <span class="toc-text">1.5内存不够怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6%E4%BC%97%E4%BA%BA%E6%8B%BE%E6%9F%B4%E7%81%AB%E7%84%B0%E9%AB%98"><span class="toc-number">1.6.</span> <span class="toc-text">1.6众人拾柴火焰高</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.什么是线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">进程调度与优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E6%8A%A2%E5%8D%A0%E7%BA%BF%E7%A8%8B%E5%92%8C%E4%B8%8D%E5%8F%AF%E6%8A%A2%E5%8D%A0%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">可抢占线程和不可抢占线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">1.6.2.</span> <span class="toc-text">线程安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E4%B8%8E%E9%94%81"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">同步与锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%86%85%E9%83%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.6.3.</span> <span class="toc-text">多线程内部情况</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">三种线程模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">静态链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E8%A2%AB%E9%9A%90%E8%97%8F%E4%BA%86%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1被隐藏了的过程</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
